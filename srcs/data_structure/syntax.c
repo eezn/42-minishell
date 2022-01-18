@@ -1,38 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 16:02:36 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/18 17:27:46 by jin-lee          ###   ########.fr       */
+/*   Created: 2022/01/17 19:13:26 by jin-lee           #+#    #+#             */
+/*   Updated: 2022/01/17 23:46:50 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* gcc syntax.c test.c token.c -I ../../includes/data_structure.h */
-
 #include "../../includes/data_structure.h"
 
-int	main()
+t_syntax	*init_syntax(char *line)
 {
 	t_syntax	*syntax;
-	syntax = init_syntax("word1 word2 word3 word4 word5");
 
-	printf("%s\n", syntax->original);
-	append_token(syntax, "word1");
-	append_token(syntax, "word2");
-	append_token(syntax, "word3");
-	append_token(syntax, "word4");
-	append_token(syntax, "word5");
+	syntax = (t_syntax *)malloc(sizeof(t_syntax));
+	if (!syntax)
+		return (NULL);
+	syntax->original = line;
+	syntax->head = NULL;
+	syntax->tail = NULL;
+	syntax->count = 0;
+	return (syntax);
+}
 
+void	delete_syntax(t_syntax *syntax)
+{
 	t_token	*curr;
-	curr = syntax->head;
-	while (curr != NULL)
+	t_token	*temp;
+
+	if (syntax->count != 0)
 	{
-		printf("%s\n", curr->content);
-		curr = curr->next;
+		curr = syntax->head;
+		temp = syntax->head->next;
+		while (curr != NULL)
+		{
+			free(curr);
+			curr = temp;
+			if (curr != NULL)
+				temp = temp->next;
+		}
 	}
-	delete_syntax(syntax);
-	return (0);
+	free(syntax);
 }
