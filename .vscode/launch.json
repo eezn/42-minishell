@@ -21,10 +21,10 @@
 		"environment": [],
 		"externalConsole": false,
 		"osx": {
-		  "MIMode": "lldb"
+			"MIMode": "lldb"
 		},
 		"linux": {
-		  "MIMode": "gdb"
+			"MIMode": "gdb"
 		},
 		"preLaunchTask": "Build minishell"
 	  }

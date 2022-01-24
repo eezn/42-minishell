@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/17 15:36:01 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/01/19 16:50:14 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,14 @@ endif
 LIBFT		= ./libft/libft.a
 
 INCS_DIR	= ./includes
-SRCS_DIR	= ./srcs
+SRCS_DIR	= ./srcs \
+			  ./srcs/tools \
+			  ./srcs/data_structure
 
-SRCS		= ./srcs/main.c
+SRCS		= ./srcs/main.c \
+			  ./srcs/tools/loop.c \
+			  ./srcs/data_structure/syntax.c \
+			  ./srcs/data_structure/token_list.c
 
 OBJS_DIR	= ./objects
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))

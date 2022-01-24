@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/19 16:45:40 by jin-lee          ###   ########.fr       */
+/*   Created: 2022/01/19 14:41:19 by jin-lee           #+#    #+#             */
+/*   Updated: 2022/01/19 16:33:18 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "data_structure.h"
 
-int	main(void)
+/* 추후 tree 사용할때 바뀔 수 있음 */
+t_syntax	*init_syntax(char *line)
 {
-	t_tlist	*tlist;
+	t_syntax	*syntax;
 
-	tlist = create_tlist();
-	append_token(tlist, "abc");
-	append_token(tlist, "def");
-	append_token(tlist, "123");
-	append_token(tlist, "456");
-	delete_tlist(tlist);
-	for (int i = 0; i < 10; i++)
-		printf("%d\n", i);
-	// loop();
-	return (0);
+	syntax = (t_syntax *)malloc(sizeof(t_syntax));
+	if (!syntax)
+		return (NULL);
+	syntax->original = line;
+	syntax->delimeter_tokens = create_tlist();
+	syntax->command_tokens = create_tlist();
+	// syntax->count = 0;
+	return (syntax);
 }
