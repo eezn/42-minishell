@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/19 16:50:14 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/01/24 15:44:14 by sangchpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,17 @@ LIBFT		= ./libft/libft.a
 INCS_DIR	= ./includes
 SRCS_DIR	= ./srcs \
 			  ./srcs/tools \
-			  ./srcs/data_structure
+			  ./srcs/data_structure \
+			  ./srcs/prompt
 
 SRCS		= ./srcs/main.c \
 			  ./srcs/tools/loop.c \
 			  ./srcs/data_structure/syntax.c \
-			  ./srcs/data_structure/token_list.c
+			  ./srcs/data_structure/token_list.c \
+			  \
+			  ./srcs/prompt/input_error.c \
+			  ./srcs/prompt/parsing.c \
+			  ./srcs/prompt/signal.c \
 
 OBJS_DIR	= ./objects
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
@@ -43,7 +48,7 @@ all: $(NAME)
 
 # minishell
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CDEBUG) $^ -o $@
+	@$(CC) $(CDEBUG) $^ -o $@ -lreadline
 	@echo "\033[32m"$(NAME) built successfully."\033[0m"
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
