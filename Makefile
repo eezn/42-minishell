@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/26 18:26:16 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/01/26 21:16:37 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/tools/loop.c \
 				  ./srcs/data_structure/syntax.c \
 				  ./srcs/data_structure/token_list.c \
+				  ./srcs/data_structure/env_list.c \
 				  \
 				  ./srcs/prompt/record_history.c \
 				  ./srcs/prompt/check_expression.c \
