@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:26:19 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/19 16:35:47 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/26 20:14:57 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,16 @@ void	delete_tlist(t_tlist *tlist)
 		}
 	}
 	free(tlist);
+}
+
+void	print_tlist(t_tlist *tlist)
+{
+		t_token *curr_token;
+
+		curr_token = tlist->head;
+		while (curr_token)
+		{
+			printf("%s\n", curr_token->content);
+			curr_token = curr_token->next;
+		}
 }
