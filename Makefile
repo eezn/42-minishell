@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/25 20:38:12 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/01/26 18:26:16 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ ifeq ($(DEBUG),true)
 	CDEBUG = -g
 endif
 
-LIB_READLINE	= -lreadline
+# -L<library dir> -l<library>
+READLINE_DIR	= -l readline -L ~/.brew/opt/readline/lib
+READLINE_CFLAGS	= -I ~/.brew/opt/readline/include
+
 LIBFT			= ./libft/libft.a
 
 INCS_DIR		= ./includes
@@ -50,11 +53,11 @@ all: $(NAME)
 
 # minishell
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CDEBUG) $^ $(LIB_READLINE) -o $@
+	@$(CC) $(CDEBUG) $(READLINE_DIR) $^ -o $@
 	@echo "\033[32m"$(NAME) built successfully."\033[0m"
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
-	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INCS_DIR) -c $^ -o $@
+	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INCS_DIR) $(READLINE_CFLAGS) -c $^ -o $@
 
 $(OBJS_DIR):
 	@mkdir -p $@
