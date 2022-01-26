@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/24 15:39:29 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/26 03:05:19 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,21 @@
 # include "../libft/includes/libft.h"
 # include "data_structure.h"
 
+# define SQUOTE	34
+# define DQUOTE	39
+
 /* Tools */
 void	loop(void);
 
 
-/* sanchpa#1 */
-
-//input_error
-int		qoute_check(char *str);
-int		is_empty(char *str);
-int		syntax_error_check(char* str);
+/* sanchpa#1, Readline -> Tokenize */
+int	record_history(char *str);
+int	check_expression(char *str);
 
 //parsing
-char**	parsing(char* str);
+char**	parsing(char *str);
+
+void	tokenize(char *str, t_tlist *token_list);
 
 //signal
 void	sig_handler(int signal);
