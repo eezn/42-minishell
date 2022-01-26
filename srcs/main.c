@@ -6,30 +6,54 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/26 21:15:08 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 04:25:42 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+t_elist	*set_env_list(char **envp)
+{
+	t_elist	*elist;
+	char	**temp;
+
+	elist = create_env_list();
+	while (*envp)
+	{
+		temp = ft_split(*envp++, '=');
+		append_env(elist, *temp, *(temp + 1));
+	}
+	return (elist);
+}
+
+void	test_env_list(t_elist *elist)
+{
+	t_env	*env;
+	
+	/* print env list */
+	print_env_list(elist);
+
+	/* search env by key */
+	env = get_env_by_key(elist, "USER");
+	if (env)
+		print_env(env);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
-	t_tlist		*token_list;
+	t_tlist		*tlist;
+	t_elist		*elist;
 
-	/* unused */
-	argc++;
-	while (*argv)
-		printf("%s\n", *argv++);
-
-	/* env 처리 */
-	while (*envp)
-		printf("%s\n", *envp++);
+	if (argc > 1 || argv[1])
+		return (EXIT_FAILURE);
+	elist = set_env_list(envp);
+	// test_env_list(elist);
 
 	/* 추후 분리 */
 	while (1)
 	{
-		token_list = create_tlist();
+		tlist = create_token_list();
 		line = readline("picoshell$ ");
 		if (!line)
 			return (EXIT_FAILURE);
@@ -37,9 +61,9 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		if (check_expression(line))
 			continue ;
-		tokenize(line, &token_list);
-		print_tlist(token_list);
-		delete_tlist(token_list);
+		tokenize(line, &tlist);
+		print_token_list(tlist);
+		delete_token_list(tlist);
 	}
 	return (EXIT_SUCCESS);
 }

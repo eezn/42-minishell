@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/26 21:16:37 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/01/27 04:27:14 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,13 @@ ifeq ($(DEBUG),true)
 	CDEBUG = -g
 endif
 
-# -L<library dir> -l<library>
-READLINE_DIR	= -l readline -L ~/.brew/opt/readline/lib
-READLINE_CFLAGS	= -I ~/.brew/opt/readline/include
+# Cluster
+# READLINE_DIR	= -l readline -L ~/.brew/opt/readline/lib
+# READLINE_CFLAGS	= -I ~/.brew/opt/readline/include
+
+# jin-lee local workspace
+READLINE_DIR	= -l readline -L /opt/homebrew/opt/readline/lib
+READLINE_CFLAGS	= -I /opt/homebrew/opt/readline/include
 
 LIBFT			= ./libft/libft.a
 
@@ -33,9 +37,11 @@ SRCS_DIR		= ./srcs \
 
 SRCS			= ./srcs/main.c \
 				  ./srcs/tools/loop.c \
-				  ./srcs/data_structure/syntax.c \
-				  ./srcs/data_structure/token_list.c \
-				  ./srcs/data_structure/env_list.c \
+				  \
+				  ./srcs/data_structure/list_token.c \
+				  ./srcs/data_structure/list_token_utils.c \
+				  ./srcs/data_structure/list_env.c \
+				  ./srcs/data_structure/list_env_utils.c \
 				  \
 				  ./srcs/prompt/record_history.c \
 				  ./srcs/prompt/check_expression.c \

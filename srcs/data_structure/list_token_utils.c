@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax.c                                           :+:      :+:    :+:   */
+/*   list_token_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 14:41:19 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/19 16:33:18 by jin-lee          ###   ########.fr       */
+/*   Created: 2022/01/27 04:16:46 by jin-lee           #+#    #+#             */
+/*   Updated: 2022/01/27 04:21:48 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_structure.h"
 
-/* 추후 tree 사용할때 바뀔 수 있음 */
-t_syntax	*init_syntax(char *line)
+void	print_token_list(t_tlist *tlist)
 {
-	t_syntax	*syntax;
+	t_token *curr_token;
 
-	syntax = (t_syntax *)malloc(sizeof(t_syntax));
-	if (!syntax)
-		return (NULL);
-	syntax->original = line;
-	syntax->delimeter_tokens = create_tlist();
-	syntax->command_tokens = create_tlist();
-	// syntax->count = 0;
-	return (syntax);
+	curr_token = tlist->head;
+	while (curr_token)
+	{
+		printf("%s\n", curr_token->content);
+		curr_token = curr_token->next;
+	}
 }
