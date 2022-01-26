@@ -3,44 +3,49 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
+#    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/24 15:44:14 by sangchpa         ###   ########.fr        #
+#    Updated: 2022/01/26 18:26:16 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= minishell
+NAME			= minishell
 
-CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CC				= gcc
+CFLAGS			= -Wall -Werror -Wextra
 
 ifeq ($(DEBUG),true)
 	CDEBUG = -g
 endif
 
-LIBFT		= ./libft/libft.a
+# -L<library dir> -l<library>
+READLINE_DIR	= -l readline -L ~/.brew/opt/readline/lib
+READLINE_CFLAGS	= -I ~/.brew/opt/readline/include
 
-INCS_DIR	= ./includes
-SRCS_DIR	= ./srcs \
-			  ./srcs/tools \
-			  ./srcs/data_structure \
-			  ./srcs/prompt
+LIBFT			= ./libft/libft.a
 
-SRCS		= ./srcs/main.c \
-			  ./srcs/tools/loop.c \
-			  ./srcs/data_structure/syntax.c \
-			  ./srcs/data_structure/token_list.c \
-			  \
-			  ./srcs/prompt/input_error.c \
-			  ./srcs/prompt/parsing.c \
-			  ./srcs/prompt/signal.c \
+INCS_DIR		= ./includes
+SRCS_DIR		= ./srcs \
+				  ./srcs/tools \
+				  ./srcs/data_structure \
+				  ./srcs/prompt
 
-OBJS_DIR	= ./objects
-OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
+SRCS			= ./srcs/main.c \
+				  ./srcs/tools/loop.c \
+				  ./srcs/data_structure/syntax.c \
+				  ./srcs/data_structure/token_list.c \
+				  \
+				  ./srcs/prompt/record_history.c \
+				  ./srcs/prompt/check_expression.c \
+				  ./srcs/prompt/new_tokenize.c \
+				  ./srcs/prompt/signal.c \
+
+OBJS_DIR		= ./objects
+OBJS			= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 vpath %.c $(SRCS_DIR)
 
-RM			= rm -f
+RM				= rm -f
 
 
 all: $(NAME)
@@ -48,11 +53,11 @@ all: $(NAME)
 
 # minishell
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CDEBUG) $^ -o $@ -lreadline
+	@$(CC) $(CDEBUG) $(READLINE_DIR) $^ -o $@
 	@echo "\033[32m"$(NAME) built successfully."\033[0m"
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
-	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INCS_DIR) -c $^ -o $@
+	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INCS_DIR) $(READLINE_CFLAGS) -c $^ -o $@
 
 $(OBJS_DIR):
 	@mkdir -p $@

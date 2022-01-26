@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   record_history.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/26 20:15:33 by jin-lee          ###   ########.fr       */
+/*   Created: 2022/01/25 20:11:44 by jin-lee           #+#    #+#             */
+/*   Updated: 2022/01/25 20:18:07 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// int	main(int argc, char **argv, char **envp)
-int main(void)
+static int	is_empty(char *str)
 {
-	char		*line;
-	t_tlist		*token_list;
+	while (*str)
+		if (!ft_isspace(*str++))
+			return (0);
+	return (1);
+}
 
-	while (1)
+int	record_history(char *str)
+{
+	if (ft_strlen(str) > 0 && !is_empty(str))
+		add_history(str);
+	else
 	{
-		token_list = create_tlist();
-		line = readline("picoshell$ ");
-		if (!line)
-			return (EXIT_FAILURE);
-		if (record_history(line))
-			continue ;
-		if (check_expression(line))
-			continue ;
-		tokenize(line, &token_list);
-		print_tlist(token_list);
-		delete_tlist(token_list);
+		free(str);
+		return (1);
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
