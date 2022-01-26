@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:11:42 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/25 20:18:11 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/26 19:33:56 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	is_open_quote(char *str)
 	return (curr_quote);
 }
 
-static int triple_redirection(char* str)
+static int is_triple(char* str)
 {
 	char	curr_quote;
 
@@ -56,7 +56,7 @@ int	check_expression(char *str)
 	state = 0;
 	if (is_open_quote(str))
 		state = 1;
-	if (triple_redirection(str))
+	if (is_triple(str))
 		state = 2;
 
 	if (state)

@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_tokenize.c                                     :+:      :+:    :+:   */
+/*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:21:28 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/26 17:26:52 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/26 20:16:15 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *set_redirect_str(char c, int size)
+static void	init_pv(t_pv *pv, char *str)
+{
+	pv->start = str;
+	pv->curr_quote = 0;
+}
+
+static char *multiple_redirection(char c, int count)
 {
 	char	*ret;
 	int		i;
 
 	i = -1;
-	ret = (char *)malloc(sizeof(char) * (size + 1));
-	while (++i < size)
+	ret = (char *)malloc(sizeof(char) * (count + 1));
+	while (++i < count)
 		ret[i] = c;
 	ret[i] = 0;
 	return (ret);
 }
 
-char	*ft_strldup(char *src, int len)
+static char	*ft_strldup(char *src, int len)
 {
 	char *ret;
 
@@ -34,43 +40,29 @@ char	*ft_strldup(char *src, int len)
 	return (ret);
 }
 
-void	tokenize(char *str, t_tlist *token_list)
+void	tokenize(char *str, t_tlist **token_list)
 {
-	char	*start;
-	char	*end;
-	char	curr_quote;
-	
-	/* temp */
-	append_token(token_list, "123");
-	printf("%s$\n", str);
-	/* temp */
+	t_pv	pv;
 
-	curr_quote = 0;
-	start = str;
+	init_pv(&pv, str);
 	while (*str)
 	{
-		if (!curr_quote && (*str == SQUOTE || *str == DQUOTE))
-			curr_quote = *str;
-		else if (curr_quote && *str == curr_quote)
-			curr_quote = 0;
-		if (!curr_quote && (*str == '|' || *str == '>' || *str == '<'))
+		if (!pv.curr_quote && (*str == SQUOTE || *str == DQUOTE))
+			pv.curr_quote = *str;
+		else if (pv.curr_quote && *str == pv.curr_quote)
+			pv.curr_quote = 0;
+		else if (!pv.curr_quote && (*str == '|' || *str == '>' || *str == '<'))
 		{
-			end = str;
-			if (start != end)
-				printf("%s\n", ft_strldup(start, end - start));
-			if (*str != '|' && *str == *(str + 1))	// >>, <<
-			{
-				printf("%s\n", set_redirect_str(*str, 2));
-				start = str + 2;
-				str++;
-			}
+			pv.end = str;
+			if (pv.start != pv.end)
+				append_token(*token_list, ft_strldup(pv.start, pv.end - pv.start));
+			if (*str != '|' && *str == *(str + 1))	// ">>", "<<"
+				append_token(*token_list, multiple_redirection(*str++, 2));
 			else
-				printf("%s\n", set_redirect_str(*str, 1));
-			start = str + 1;
+				append_token(*token_list, multiple_redirection(*str, 1));
+			pv.start = str + 1;
 		}
 		str++;
 	}
-	printf("%s\n", ft_strdup(start));
+	append_token(*token_list, ft_strdup(pv.start));
 }
-
-
