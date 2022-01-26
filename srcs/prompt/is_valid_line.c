@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_expression.c                                 :+:      :+:    :+:   */
+/*   is_valid_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:11:42 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/26 19:33:56 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 05:27:06 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	is_open_quote(char *str)
 	return (curr_quote);
 }
 
-static int is_triple(char* str)
+static int	is_triple(char *str)
 {
 	char	curr_quote;
 
@@ -49,7 +49,7 @@ static int is_triple(char* str)
 
 /* 입력된 명령어 라인이 유효한지 검사, 유효하지 않으면 에러메세지 출력 */
 /* 구조체 만들어서 에러 타입별로 다른 메세지 출력하도록 변경 가능 */
-int	check_expression(char *str)
+int	is_valid_line(char *str)
 {
 	int	state;
 
@@ -58,7 +58,6 @@ int	check_expression(char *str)
 		state = 1;
 	if (is_triple(str))
 		state = 2;
-
 	if (state)
 	{
 		printf("Undifined Syntax\n");

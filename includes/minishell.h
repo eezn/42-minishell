@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/26 20:06:01 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 05:31:54 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	loop(void);
 
 /* sanchpa#1, Readline -> Tokenize */
 int		record_history(char *str);
-int		check_expression(char *str);
-void	tokenize(char *str, t_tlist **token_list);
+int		is_valid_line(char *str);
+void	get_token_list(char *str, t_tlist **tlist);
 
 //signal
 void	sig_handler(int signal);
-void	setting_signal();
+void	setting_signal(void);
 
 #endif

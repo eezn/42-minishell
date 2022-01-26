@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:16:46 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 04:21:48 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 05:31:34 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_token_list(t_tlist *tlist)
 {
-	t_token *curr_token;
+	t_token	*curr_token;
 
 	curr_token = tlist->head;
 	while (curr_token)

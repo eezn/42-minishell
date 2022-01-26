@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 04:25:42 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 05:29:27 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int	main(int argc, char **argv, char **envp)
 			return (EXIT_FAILURE);
 		if (record_history(line))
 			continue ;
-		if (check_expression(line))
+		if (is_valid_line(line))
 			continue ;
-		tokenize(line, &tlist);
+		get_token_list(line, &tlist);
 		print_token_list(tlist);
 		delete_token_list(tlist);
 	}

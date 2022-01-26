@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize.c                                         :+:      :+:    :+:   */
+/*   get_token_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:21:28 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/26 20:16:15 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 05:29:21 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	init_pv(t_pv *pv, char *str)
 	pv->curr_quote = 0;
 }
 
-static char *multiple_redirection(char c, int count)
+static char	*multiple_redirection(char c, int count)
 {
 	char	*ret;
 	int		i;
@@ -33,14 +33,14 @@ static char *multiple_redirection(char c, int count)
 
 static char	*ft_strldup(char *src, int len)
 {
-	char *ret;
+	char	*ret;
 
 	ret = (char *)malloc(sizeof(char) * (len + 1));
 	ft_strlcpy(ret, src, len + 1);
 	return (ret);
 }
 
-void	tokenize(char *str, t_tlist **token_list)
+void	get_token_list(char *str, t_tlist **tlist)
 {
 	t_pv	pv;
 
@@ -55,14 +55,14 @@ void	tokenize(char *str, t_tlist **token_list)
 		{
 			pv.end = str;
 			if (pv.start != pv.end)
-				append_token(*token_list, ft_strldup(pv.start, pv.end - pv.start));
-			if (*str != '|' && *str == *(str + 1))	// ">>", "<<"
-				append_token(*token_list, multiple_redirection(*str++, 2));
+				append_token(*tlist, ft_strldup(pv.start, pv.end - pv.start));
+			if (*str != '|' && *str == *(str + 1))
+				append_token(*tlist, multiple_redirection(*str++, 2));
 			else
-				append_token(*token_list, multiple_redirection(*str, 1));
+				append_token(*tlist, multiple_redirection(*str, 1));
 			pv.start = str + 1;
 		}
 		str++;
 	}
-	append_token(*token_list, ft_strdup(pv.start));
+	append_token(*tlist, ft_strdup(pv.start));
 }
