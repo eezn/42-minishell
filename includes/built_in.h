@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:30:42 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 19:19:41 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 19:43:22 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,13 @@ void	built_in_env(t_elist *elist);
 void	built_in_export(t_elist *elist, char *key, char *value);
 void	built_in_unset(t_elist *elist, char *key);
 
+
+int built_in_check(char *token, t_elist *elist);
+
+
+int built_in_pwd(char** tmp);
+// int built_in_echo(char** token);
+int built_in_cd(char* token, char** tmp, t_elist	* elist);
+
 #endif
+
