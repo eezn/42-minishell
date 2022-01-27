@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:59:30 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/01/27 19:25:47 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/27 20:19:05 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int built_in_check(char *token, t_elist *elist)
 	if(ft_strnstr("pwd", tmp[0], ft_strlen("pwd")) != 0)
 		built_in_pwd(tmp);
 	else if(ft_strnstr("cd", tmp[0], ft_strlen("cd")) != 0)
-		built_in_cd(token, tmp, elist);
+		built_in_cd(tmp, elist);
 	// else if(ft_strnstr("env", tmp[0], ft_strlen("env")) != 0)
 	// 	env(token, env_list);
 	// else if(ft_strnstr("export", tmp[0], ft_strlen("export")) != 0)
@@ -101,5 +101,5 @@ char** arg_split(char* arg_set, int count)
 		}
 		arg_set++;
 	}
-
+	return arg;
 }

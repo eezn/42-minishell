@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:30:42 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 19:43:22 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/27 20:13:33 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int built_in_check(char *token, t_elist *elist);
 
 int built_in_pwd(char** tmp);
 // int built_in_echo(char** token);
-int built_in_cd(char* token, char** tmp, t_elist	* elist);
+int built_in_cd(char** tmp, t_elist	* elist);
 
 #endif
 

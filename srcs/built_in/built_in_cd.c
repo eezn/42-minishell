@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:56:44 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/01/27 17:39:46 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/27 20:13:20 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void cd_arg_check(char** tmp, t_elist *elist, t_env *env_pwd, t_env *env_oldpwd)
 	}
 }
 
-int built_in_cd(char* token, char** tmp, t_elist	* elist)
+int built_in_cd(char** tmp, t_elist	* elist)
 {
 	t_env	*env_pwd;
 	t_env	*env_oldpwd;
