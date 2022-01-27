@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 05:29:27 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 17:21:52 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	main(int argc, char **argv, char **envp)
 	if (argc > 1 || argv[1])
 		return (EXIT_FAILURE);
 	elist = set_env_list(envp);
-	// test_env_list(elist);
 
 	/* 추후 분리 */
 	while (1)
@@ -62,7 +61,10 @@ int	main(int argc, char **argv, char **envp)
 		if (is_valid_line(line))
 			continue ;
 		get_token_list(line, &tlist);
-		print_token_list(tlist);
+
+		built_in_check(tlist->head->content, elist);
+
+		
 		delete_token_list(tlist);
 	}
 	return (EXIT_SUCCESS);

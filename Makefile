@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/27 05:34:07 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/01/27 17:08:09 by sangchpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ INCS_DIR		= ./includes
 SRCS_DIR		= ./srcs \
 				  ./srcs/tools \
 				  ./srcs/data_structure \
-				  ./srcs/prompt
+				  ./srcs/prompt \
+				  ./srcs/built_in 
+
 
 SRCS			= ./srcs/main.c \
 				  ./srcs/tools/loop.c \
@@ -47,6 +49,10 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/prompt/is_valid_line.c \
 				  ./srcs/prompt/get_token_list.c \
 				  ./srcs/prompt/signal.c \
+				  \
+				  ./srcs/built_in/built_in_check.c \
+				  ./srcs/built_in/built_in_cd.c \
+				  ./srcs/built_in/built_in_pwd.c \
 
 OBJS_DIR		= ./objects
 OBJS			= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
