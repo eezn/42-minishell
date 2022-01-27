@@ -36,7 +36,6 @@ SRCS_DIR		= ./srcs \
 				  ./srcs/prompt \
 				  ./srcs/built_in
 
-
 SRCS			= ./srcs/main.c \
 				  ./srcs/test.c \
 				  ./srcs/tools/loop.c \

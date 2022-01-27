@@ -24,7 +24,6 @@
 # include "data_structure.h"
 # include "built_in.h"
 
-
 # define SQUOTE	34
 # define DQUOTE	39
 
