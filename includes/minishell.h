@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 05:31:54 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 19:20:20 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # include "../libft/includes/libft.h"
 # include "data_structure.h"
+# include "built_in.h"
 
 # define SQUOTE	34
 # define DQUOTE	39
@@ -44,8 +45,12 @@ int		record_history(char *str);
 int		is_valid_line(char *str);
 void	get_token_list(char *str, t_tlist **tlist);
 
-//signal
+/* Signal */
 void	sig_handler(int signal);
 void	setting_signal(void);
+
+/* Test Functions */
+void	test_env_list(t_elist *elist);
+void	test_unset(void);
 
 #endif

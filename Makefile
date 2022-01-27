@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/27 05:34:07 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/01/27 19:14:10 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,11 @@ INCS_DIR		= ./includes
 SRCS_DIR		= ./srcs \
 				  ./srcs/tools \
 				  ./srcs/data_structure \
-				  ./srcs/prompt
+				  ./srcs/prompt \
+				  ./srcs/built_in
 
 SRCS			= ./srcs/main.c \
+				  ./srcs/test.c \
 				  ./srcs/tools/loop.c \
 				  \
 				  ./srcs/data_structure/list_token.c \
@@ -47,6 +49,10 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/prompt/is_valid_line.c \
 				  ./srcs/prompt/get_token_list.c \
 				  ./srcs/prompt/signal.c \
+				  \
+				  ./srcs/built_in/built_in_env.c \
+				  ./srcs/built_in/built_in_export.c \
+				  ./srcs/built_in/built_in_unset.c \
 
 OBJS_DIR		= ./objects
 OBJS			= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))

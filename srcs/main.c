@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 05:29:27 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 19:15:16 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,6 @@ t_elist	*set_env_list(char **envp)
 	return (elist);
 }
 
-void	test_env_list(t_elist *elist)
-{
-	t_env	*env;
-	
-	/* print env list */
-	print_env_list(elist);
-
-	/* search env by key */
-	env = get_env_by_key(elist, "USER");
-	if (env)
-		print_env(env);
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
@@ -49,6 +36,7 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	elist = set_env_list(envp);
 	// test_env_list(elist);
+	// test_unset();
 
 	/* 추후 분리 */
 	while (1)
