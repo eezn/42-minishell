@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:08:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 04:09:36 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 19:18:54 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	print_env(t_env	*env)
 {
-	printf("%s=%s\n", env->key, env->value);
+	if (env)
+		printf("%s=%s\n", env->key, env->value);
 }
 
 void	print_env_list(t_elist *elist)
@@ -36,7 +37,8 @@ t_env	*get_env_by_key(t_elist *elist, char *key)
 	curr = elist->head;
 	while (curr)
 	{
-		if (!ft_strncmp(curr->key, key, ft_strlen(key)))
+		if (!ft_strncmp(curr->key, key, ft_strlen(key)) \
+			&& (ft_strlen(curr->key) == ft_strlen(key)))
 			return (curr);
 		curr = curr->next;
 	}

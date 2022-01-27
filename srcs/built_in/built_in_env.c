@@ -6,7 +6,13 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:17 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 04:22:18 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 19:17:01 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "built_in.h"
+
+void	built_in_env(t_elist *elist)
+{
+	print_env_list(elist);
+}
