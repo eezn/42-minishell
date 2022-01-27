@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 19:44:28 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/27 20:03:14 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		get_token_list(line, &tlist);
 
-		built_in_check(tlist->head->content, elist);
+		// built_in_check(tlist->head->content, elist);
 
 		
 		delete_token_list(tlist);
