@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:39:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 04:27:35 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/27 17:08:15 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ struct	s_tlist
 {
 	t_token		*head;
 	t_token		*tail;
-	size_t		*count;
+	size_t		count;
 };
 
 struct s_elist
 {
 	t_env		*head;
 	t_env		*tail;
-	size_t		*count;
+	size_t		count;
 };
 
 struct	s_token
