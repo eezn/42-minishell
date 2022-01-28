@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:21:28 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 05:29:21 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/29 06:45:31 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,6 @@ static char	*multiple_redirection(char c, int count)
 	while (++i < count)
 		ret[i] = c;
 	ret[i] = 0;
-	return (ret);
-}
-
-static char	*ft_strldup(char *src, int len)
-{
-	char	*ret;
-
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	ft_strlcpy(ret, src, len + 1);
 	return (ret);
 }
 

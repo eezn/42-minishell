@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 19:44:04 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/29 06:50:23 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ struct s_pv
 
 /* Tools */
 void	loop(void);
+char	*ft_strldup(char *src, int len);
+char	*ft_ltrim(char *str);
+char	*ft_rtrim(char *str);
+char	*ft_trim(char *str);
 
 /* sanchpa#1, Readline -> Tokenize */
 int		record_history(char *str);
@@ -52,5 +56,6 @@ void	setting_signal(void);
 /* Test Functions */
 void	test_env_list(t_elist *elist);
 void	test_unset(void);
+void	test_trim(void);
 
 #endif
