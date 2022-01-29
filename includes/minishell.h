@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 19:44:04 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:55:21 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "data_structure.h"
 # include "built_in.h"
 
-# define SQUOTE	34
-# define DQUOTE	39
+# define SQUOTE	39
+# define DQUOTE	34
 
 typedef struct s_pv	t_pv;
 

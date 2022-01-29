@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 20:21:28 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/29 19:24:20 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,36 @@ t_elist	*set_env_list(char **envp)
 	return (elist);
 }
 
+void line_free(char* line, char**token)
+{
+	int i;
+	i = 0;
+
+	while(token[i])
+	{
+		free(token[i]);
+		i++;
+	}
+	free(token);
+	free(line);
+	return ((void)0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
 	t_tlist		*tlist;
 	t_elist		*elist;
+	char** token;
 
 	if (argc > 1 || argv[1])
 		return (EXIT_FAILURE);
 	elist = set_env_list(envp);
 	// test_env_list(elist);
 	// test_unset();
+
+
+	// int i;
 
 	/* 추후 분리 */
 	while (1)
@@ -50,8 +69,13 @@ int	main(int argc, char **argv, char **envp)
 		if (is_valid_line(line))
 			continue ;
 		get_token_list(line, &tlist);
-		// built_in_check(tlist->head->content, elist);
+		token = arg_split(tlist->head->content);
+		filter(token, elist);
+		
+		built_in_check(token, elist);
+		
 		delete_token_list(tlist);
+		line_free(line, token);
 	}
 	return (EXIT_SUCCESS);
 }

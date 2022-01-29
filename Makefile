@@ -6,7 +6,7 @@
 #    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/27 20:20:33 by sangchpa         ###   ########.fr        #
+#    Updated: 2022/01/29 17:58:49 by sangchpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,9 +53,13 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/built_in/built_in_env.c \
 				  ./srcs/built_in/built_in_export.c \
 				  ./srcs/built_in/built_in_unset.c \
-				  ./srcs/built_in/built_in_check.c \
 				  ./srcs/built_in/built_in_cd.c \
 				  ./srcs/built_in/built_in_pwd.c \
+				  ./srcs/built_in/built_in_echo.c \
+				  ./srcs/built_in/built_in_check.c \
+				  ./srcs/built_in/arg_split.c \
+				  ./srcs/built_in/filter.c \
+
 
 OBJS_DIR		= ./objects
 OBJS			= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))

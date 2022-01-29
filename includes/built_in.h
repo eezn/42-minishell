@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:30:42 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 20:13:33 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/29 18:01:06 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,29 @@
 # include "data_structure.h"
 
 /* Built in Functions */
-void	built_in_env(t_elist *elist);
-void	built_in_export(t_elist *elist, char *key, char *value);
-void	built_in_unset(t_elist *elist, char *key);
+// void	built_in_env(t_elist *elist);
+// void	built_in_export(t_elist *elist, char *key, char *value);
+// void	built_in_unset(t_elist *elist, char *key);
 
 
-int built_in_check(char *token, t_elist *elist);
 
 
-int built_in_pwd(char** tmp);
-// int built_in_echo(char** token);
+void	built_in_env(char **token, t_elist *elist);
+void	built_in_export(char **token, t_elist *elist);
+void	built_in_unset(char **token, t_elist *elist);
+
+int built_in_pwd(char** token);
+void built_in_echo(char** token);
 int built_in_cd(char** tmp, t_elist	* elist);
+
+int built_in_check(char **token, t_elist *elist);
+
+
+
+/*    arg_split*/
+char** arg_split(char* arg);
+
+char** filter(char **token, t_elist *elist);
 
 #endif
 
