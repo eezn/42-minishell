@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:59:30 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/01/27 20:19:05 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/29 06:59:05 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int built_in_check(char *token, t_elist *elist)
 }
 
 
-static char	*ft_strldup(char *src, int len)
-{
-	char	*ret;
+// static char	*ft_strldup(char *src, int len)
+// {
+// 	char	*ret;
 
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	ft_strlcpy(ret, src, len + 1);
-	return (ret);
-}
+// 	ret = (char *)malloc(sizeof(char) * (len + 1));
+// 	ft_strlcpy(ret, src, len + 1);
+// 	return (ret);
+// }
 
 int arg_count(char* arg_set)
 {

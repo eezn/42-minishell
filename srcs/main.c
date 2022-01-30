@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 20:21:28 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/30 03:28:12 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ int	main(int argc, char **argv, char **envp)
 	elist = set_env_list(envp);
 	// test_env_list(elist);
 	// test_unset();
+	// test_trim();
 
 	/* 추후 분리 */
 	while (1)
 	{
 		tlist = create_token_list();
-		line = readline("picoshell$ ");
+		line = readline("\033[32mpicoshell$ \033[0m");
 		if (!line)
 			return (EXIT_FAILURE);
 		if (record_history(line))
@@ -50,6 +51,8 @@ int	main(int argc, char **argv, char **envp)
 		if (is_valid_line(line))
 			continue ;
 		get_token_list(line, &tlist);
+		// print_token_list(tlist); nl();
+		analize_token_list(tlist);
 		// built_in_check(tlist->head->content, elist);
 		delete_token_list(tlist);
 	}

@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:26:19 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 04:21:55 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/30 00:03:19 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static t_token	*new_token(char *chunk)
 	token = (t_token *)malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
+	token->type = NONE;
 	token->content = chunk;
 	token->next = NULL;
 	return (token);
