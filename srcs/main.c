@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/29 19:24:20 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/30 18:18:59 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,25 @@ void line_free(char* line, char**token)
 	return ((void)0);
 }
 
+
+void print_test(char** token)
+{
+	int i;
+	i = 0;
+
+	while(token[i])
+	{
+		printf("|%d = %s|\n",i, token[i]);
+		i++;
+	}
+}
+
+
 int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
 	t_tlist		*tlist;
+	
 	t_elist		*elist;
 	char** token;
 
@@ -54,8 +69,6 @@ int	main(int argc, char **argv, char **envp)
 	// test_env_list(elist);
 	// test_unset();
 
-
-	// int i;
 
 	/* 추후 분리 */
 	while (1)
@@ -69,13 +82,14 @@ int	main(int argc, char **argv, char **envp)
 		if (is_valid_line(line))
 			continue ;
 		get_token_list(line, &tlist);
+
+		
 		token = arg_split(tlist->head->content);
 		filter(token, elist);
-		
 		built_in_check(token, elist);
-		
+
+		line_free(line, token);		
 		delete_token_list(tlist);
-		line_free(line, token);
 	}
 	return (EXIT_SUCCESS);
 }

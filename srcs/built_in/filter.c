@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:37 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/01/29 16:54:12 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/30 17:55:47 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ static char	*ft_strldup(char *src, int len)
 }
 
 ////$? env에 세팅해 줘야 한다
+
+static int is_env(char* token)
+{
+	int i;
+	i = 0;
+
+	while(token[i])
+	{
+		if(token[i] == '$' && token[i + 1] != ' ' && token[i + 1] != 0)
+			return 1;
+		i++;
+	}
+	return 0;
+}
+
+
 static char* env_check(char* token, t_elist *elist)
 {
 	int i;
@@ -71,7 +87,7 @@ char** filter(char **token, t_elist *elist)
 	i = 0;
 	while(token[i] != 0)
 	{
-		tmp = token[i];
+		tmp = ft_strdup(token[i]);
 		if(token[i][0] == SQUOTE)
 		{
 			free(token[i]);
@@ -79,14 +95,20 @@ char** filter(char **token, t_elist *elist)
 		}
 		else
 		{
+			
 			if(token[i][0] == DQUOTE)
 			{
 				free(token[i]);
 				token[i] = ft_strldup((tmp+1), ft_strlen(tmp)-2);
 			}
-			token[i] = env_check(token[i], elist);
+			if(is_env(token[i]))
+			{
+				token[i] = env_check(token[i], elist);
+			}
 		}
+		free(tmp);
 		i++;
+		// printf("%d = ----------end-\n", i);
 	}
 	return token;
 }

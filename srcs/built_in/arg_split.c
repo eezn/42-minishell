@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:33 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/01/29 16:45:56 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/30 17:52:14 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ char** arg_split(char* arg)
 	while(*(arg -1) == ' ')
 		arg--;
 	arg_set[idx] = ft_strldup(start, arg - start);
+	arg_set[idx + 1] = 0;
 	return arg_set;
 }

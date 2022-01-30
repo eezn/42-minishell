@@ -6,7 +6,7 @@
 #    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/29 17:58:49 by sangchpa         ###   ########.fr        #
+#    Updated: 2022/01/29 19:40:45 by sangchpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ SRCS_DIR		= ./srcs \
 				  ./srcs/built_in
 
 SRCS			= ./srcs/main.c \
-				  ./srcs/test.c \
 				  ./srcs/tools/loop.c \
 				  \
 				  ./srcs/data_structure/list_token.c \
