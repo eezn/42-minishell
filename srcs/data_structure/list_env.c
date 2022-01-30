@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 21:15:52 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 19:19:16 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/01/30 17:13:45 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,14 @@ void	delete_env_list(t_elist *elist)
 	t_env	*curr;
 	t_env	*temp;
 
-	if (elist->count)
+	curr = elist->head;
+	while (curr)
 	{
-		curr = elist->head;
-		temp = elist->head->next;
-		while (curr)
-		{
-			free(curr);
-			curr = temp;
-			if (curr)
-				temp = temp->next;
-		}
+		temp = curr->next;
+		free(curr->key);
+		free(curr->value);
+		free(curr);
+		curr = temp;
 	}
 	free(elist);
 }
