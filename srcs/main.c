@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/30 18:18:59 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/01 23:46:15 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc > 1 || argv[1])
 		return (EXIT_FAILURE);
+	setting_signal();
 	elist = set_env_list(envp);
 	// test_env_list(elist);
 	// test_unset();
@@ -87,6 +88,7 @@ int	main(int argc, char **argv, char **envp)
 		token = arg_split(tlist->head->content);
 		filter(token, elist);
 		built_in_check(token, elist);
+		// heredoc(token);
 
 		line_free(line, token);		
 		delete_token_list(tlist);

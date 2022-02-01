@@ -6,7 +6,7 @@
 #    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/29 19:40:45 by sangchpa         ###   ########.fr        #
+#    Updated: 2022/02/02 01:02:00 by sangchpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,10 @@ READLINE_CFLAGS	= -I ~/.brew/opt/readline/include
 # jin-lee local workspace
 # READLINE_DIR	= -l readline -L /opt/homebrew/opt/readline/lib
 # READLINE_CFLAGS	= -I /opt/homebrew/opt/readline/include
+
+# sangchpa local workspace
+# READLINE_DIR	= -l readline -L /usr/local/opt/readline/lib
+# READLINE_CFLAGS	= -I /usr/local/opt/readline/include
 
 LIBFT			= ./libft/libft.a
 
@@ -58,6 +62,7 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/built_in/built_in_check.c \
 				  ./srcs/built_in/arg_split.c \
 				  ./srcs/built_in/filter.c \
+				  ./srcs/built_in/heredoc.c \
 
 
 OBJS_DIR		= ./objects
