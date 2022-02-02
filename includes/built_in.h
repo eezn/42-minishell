@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:30:42 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/01 22:46:57 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/02 14:12:40 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int built_in_check(char **token, t_elist *elist);
 /*    arg_split*/
 char** arg_split(char* arg);
 
-char** filter(char **token, t_elist *elist);
+void	filter(char **token, t_elist *elist);
 
 int heredoc(char **token);
 

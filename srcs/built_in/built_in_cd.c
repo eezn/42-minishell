@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:56:44 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/01/30 18:19:05 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/02 20:44:14 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ int built_in_cd(char** tmp, t_elist	* elist)
 	
 	if (cd_arg_check(tmp, elist, env_pwd, env_oldpwd) > 0)
 		return 0;
-
-	
 	if (chdir(tmp[1]) == -1)
 		printf("IS NOT FOUND\n");
 	else

@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:33 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/01/30 17:52:14 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/02 20:51:04 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ char** arg_split(char* arg)
 		arg++;
 	start = arg;
 	arg_set = (char **)malloc(sizeof(char *) * cnt + 1);
+	
 	while (*arg)
 	{
 		if (!curr_quote && (*arg == SQUOTE || *arg == DQUOTE))

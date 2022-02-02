@@ -6,12 +6,11 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:17 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/01/29 18:00:45 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/02 20:35:20 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 void built_in_echo(char** token)
 {
@@ -20,24 +19,22 @@ void built_in_echo(char** token)
 		printf("\n");
 	else if (ft_strlen(token[1]) == 2 && token[1][0] == '-' && token[1][1] == 'n') //strnstr 안되서 임시 방편
 	{
-		i = 2;
-		while(token[i] != 0)
+		i = 1;
+		while(token[++i] != 0)
 		{
 			printf("%s",token[i]);
 			if ((token[i + 1] != 0))
-			printf(" ");
-			i++;
+				printf(" ");
 		}
 	}
 	else
 	{
-		i = 1;
-		while(token[i] != 0)
+		i = 0;
+		while(token[++i] != 0)
 		{
 			printf("%s", token[i]);
 			if ((token[i + 1] != 0))
 			printf(" ");
-			i++;
 		}
 		printf("\n");
 	}

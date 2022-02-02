@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/01 23:46:15 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/02 20:52:04 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,32 @@ void print_test(char** token)
 	}
 }
 
+static void	execute(char **token, t_elist *elist)
+{
+	t_env	*env;
+	char	**pathv;
+	char	*temp;
+	char	*path;
+	int		i;
+
+	i = 0;
+	env = get_env_by_key(elist, "PATH");
+	pathv = ft_split(env->value + 5, ':');
+	while (pathv[i])
+	{
+		temp = ft_strjoin(pathv[i], "/");
+		path = ft_strjoin(temp, token[0]);
+		free(temp);
+		if (access(path, F_OK) == 0)
+		{
+			execve(path, token, NULL);
+			perror(token[0]);
+		}
+		free(path);
+		i++;
+	}
+}
+
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -62,6 +88,8 @@ int	main(int argc, char **argv, char **envp)
 	
 	t_elist		*elist;
 	char** token;
+
+	pid_t	pid;
 
 	if (argc > 1 || argv[1])
 		return (EXIT_FAILURE);
@@ -87,10 +115,21 @@ int	main(int argc, char **argv, char **envp)
 		
 		token = arg_split(tlist->head->content);
 		filter(token, elist);
-		built_in_check(token, elist);
+		if (built_in_check(token, elist) > 0)
+		{
+			pid = fork();
+			if (!pid)
+			{
+				execute(token, elist);
+				perror(token[0]);
+				return 0;
+			}
+			else
+				wait(&pid);
+		}
 		// heredoc(token);
 
-		line_free(line, token);		
+		line_free(line, token);
 		delete_token_list(tlist);
 	}
 	return (EXIT_SUCCESS);
