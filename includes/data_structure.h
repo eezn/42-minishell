@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:39:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/30 03:13:17 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/03 10:35:19 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 # include <unistd.h>
 # include "../libft/includes/libft.h"
 
-# define NONE 0
-# define CMD_BLOCK 1
-# define PATH 2
-# define HERE_DOC 3
+# define TRUE 1
+# define FALSE 0
 
-// # define CMD_EXEC 4
-// # define ARGV 5
+# define NONE 0
+# define COMMAND 1
+# define PATH 2
+# define HEREDOC 3
 
 # define PIPE 10
-# define R_IN 11
-# define R_IIN 12
-# define R_OUT 13
-# define R_OOUT 14
+# define R_II 11
+# define R_I 12
+# define R_O 13
+# define R_OO 14
 
 typedef struct s_tlist		t_tlist;
 typedef struct s_elist		t_elist;
@@ -69,6 +69,7 @@ struct	s_env
 
 struct s_node
 {
+	int			root;
 	int			type;
 	char		*content;
 	t_node		*lnode;
@@ -95,5 +96,7 @@ void		print_env_list(t_elist *elist);
 t_env		*get_env_by_key(t_elist *elist, char *key);
 
 /* Abstract Syntax Tree */
+t_node	*astree(t_tlist *tlist);
+t_node	*insert_astree(t_node *astree, t_node *insert);
 
 #endif

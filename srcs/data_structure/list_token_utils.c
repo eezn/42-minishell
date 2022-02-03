@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:16:46 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/30 00:48:08 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/03 10:36:16 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,23 @@ void	inner_analize(t_token *curr, char *content, int prev_type)
 		curr->type = PIPE;
 	else if (*content == '<')
 	{
-		curr->type = R_IN;
+		curr->type = R_I;
 		if (*content == *(content + 1))
-			curr->type = R_IIN;
+			curr->type = R_II;
 	}
 	else if (*content == '>')
 	{
-		curr->type = R_OUT;
+		curr->type = R_O;
 		if (*content == *(content + 1))
-			curr->type = R_OOUT;
+			curr->type = R_OO;
 	}
 	else if (ft_strlen(content))
 	{
-		curr->type = CMD_BLOCK;
-		if (prev_type == R_IN || prev_type == R_OUT || prev_type == R_OOUT)
+		curr->type = COMMAND;
+		if (prev_type == R_I || prev_type == R_O || prev_type == R_OO)
 			curr->type = PATH;
-		if (prev_type == R_IIN)
-			curr->type = HERE_DOC;
+		if (prev_type == R_II)
+			curr->type = HEREDOC;
 	}
 }
 
