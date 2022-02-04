@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:37 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/04 19:13:36 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 19:52:01 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static char	*env_check(char *token, t_elist *elist)
 
 	i = 0;
 	env_end_idx = 0;
-	tmp = ft_calloc(1024, sizeof(char));
+	tmp = ft_calloc(BUFF_SIZE, sizeof(char));
 	env_end_idx = find_env(token, tmp, elist, env_end_idx);
 	if (env_end_idx != 0)
 	{

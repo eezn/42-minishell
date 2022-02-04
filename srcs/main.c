@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:01:07 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 20:39:25 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int	main(int argc, char **argv, char **envp)
 	// test_env_list(elist);
 	// test_trim();
 
+	setting_parent_signal();
+
 	/* 추후 분리 */
 	while (1)
 	{
 		line = (char *)malloc(sizeof(char) * 100);
-		ft_strcpy(line, "'ls' -l -a");
+		ft_strcpy(line, "cat < file");
 		// line = readline("\033[32mpicoshell$ \033[0m");
 		if (!line)
 			return (EXIT_FAILURE);
@@ -47,7 +49,7 @@ int	main(int argc, char **argv, char **envp)
 		
 		delete_astree(astree);
 		delete_token_list(tlist);
-		free(line);
+		// free(line);
 
 		break ;
 	}

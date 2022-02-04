@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 17:46:28 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 20:34:55 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**get_args(t_node *astree)
 		curr = astree;
 		while (curr)
 		{
-			args[idx++] = curr->content;
+			args[idx++] = ft_strdup(curr->content);
 			curr = curr->rnode;
 		}
 		args[idx] = NULL;
@@ -43,7 +43,7 @@ char	**get_args(t_node *astree)
 	{
 		// 합칠 수 있으면 합치기
 		args = (char **)malloc(sizeof(char *) * 2);
-		args[0] = astree->content;
+		args[0] = ft_strdup(astree->content);
 		args[1] = NULL;
 	}
 	// printf("%d\n", argc);
@@ -53,23 +53,40 @@ char	**get_args(t_node *astree)
 	return (args);
 }
 
+static char	*ft_envjoin(char const *s1, char const *s2)
+{
+	char		*s;
+	char		*ret;
+	size_t		total_len;
+
+	if (!s1 || !s2)
+		return (NULL);
+	total_len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	ret = (char *)malloc(sizeof(char) * (total_len + 1));
+	if (!ret)
+		return (NULL);
+	s = ret;
+	while (*s1)
+		*s++ = *s1++;
+	*s++ = '=';
+	while (*s2)
+		*s++ = *s2++;
+	*s = 0;
+	return (ret);
+}
+
 char	**get_envp(t_elist *elist)
 {
 	int		idx;
 	t_env	*curr;
 	char	**envp;
-	char	*temp;
 
 	idx = 0;
 	curr = elist->head;
 	envp = (char **)malloc(sizeof(char *) * (elist->count + 1));
 	while (idx < (int)elist->count)
 	{
-		temp = ft_strdup(curr->key);
-		temp = ft_strjoin(temp, "=");
-		temp = ft_strjoin(temp, curr->value);
-		// ft_strjoin 중간 부산물 free 필요
-		envp[idx++] = temp;
+		envp[idx++] = ft_envjoin(curr->key, curr->value);
 		curr = curr->next;
 	}
 	// idx = -1;
@@ -78,19 +95,17 @@ char	**get_envp(t_elist *elist)
 	return (envp);
 }
 
-void	exec_cmd(t_node *astree, t_elist *elist)
+void	inner_exec_cmd(char **args, t_elist *elist)
 {
-	char	**args;
 	char	**envp;
-	char	*cmd;
 	char	**pathv;
-	int		idx;
+	char	*cmd;
 	char	*temp;
+	int		idx;
 
-	args = get_args(astree);
-	filter(args, elist);
 	envp = get_envp(elist);
-	// printf("%s\n", get_env_by_key(elist, "PATH")->value);
+	execve(args[0], args, envp);
+
 	pathv = ft_split(get_env_by_key(elist, "PATH")->value, ':');
 	idx = -1;
 	while (pathv[++idx])
@@ -98,9 +113,44 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 		temp = ft_strjoin(pathv[idx], "/");
 		cmd = ft_strjoin(temp, args[0]);
 		free(temp);
-		if (access(cmd, F_OK) == 0)
-			if (execve(cmd, args, envp) == -1)
-				printf("exec");
+		execve(cmd, args, envp);
 	}
-	// 실행 후 minishell 종료 안되게 하려면 fork 해서 자식프로세스에서 execve 실행해야함
+	// 자식프로세스에서 실행이 안될 경우 에러 출력하고, 자식프로세스 종료
+	printf("error: exec\n");
+	exit(EXIT_FAILURE);
+}
+
+
+void	exec_cmd(t_node *astree, t_elist *elist)
+{
+	char	**args;
+	pid_t	pid;
+
+	args = get_args(astree);
+	filter(args, elist);
+
+	if (built_in_check(args, elist))
+	{
+		pid = fork();
+		printf("%d\n", getpid());
+		if (!pid)
+		{
+			setting_child_signal();
+			inner_exec_cmd(args, elist); // fork()
+		}
+		else
+			wait(NULL);
+	}
+	else
+	{
+		int i = 0;
+		while (args[i])
+		{
+			free(args[i]);
+			i++;
+		}
+		free(args);
+	}
+	
+	printf("%d\n", getpid());
 }

@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:08:24 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:25:00 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 19:51:56 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@
 # define R_I 12
 # define R_O 13
 # define R_OO 14
+
+# define BUFF_SIZE 1024
 
 #endif
