@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/03 15:01:15 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 16:48:52 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	// elist = set_env_list(envp);
+	// (void)envp;
+	elist = set_env_list(envp);
 	// test_env_list(elist);
 	// test_unset();
 	// test_trim();
@@ -50,7 +51,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		// line = (char *)malloc(sizeof(char) * 100);
-		// ft_strcpy(line, "echo 123 456 '$USER'");
+		// ft_strcpy(line, "echo 123 456 '$USER' | grep '' ");
 		
 		line = readline("\033[32mpicoshell$ \033[0m");
 		if (!line)

@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:13:03 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/03 13:13:10 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 16:49:15 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	exec_rdr(t_node *astree, t_elist *elist)
 {
+	(void)astree;
+	(void)elist;
 	return ;
 }

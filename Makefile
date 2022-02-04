@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/04 16:20:46 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/02/04 16:23:16 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,12 @@ ifeq ($(DEBUG),true)
 endif
 
 # Cluster
-# READLINE_DIR	= -l readline -L ~/.brew/opt/readline/lib
-# READLINE_CFLAGS	= -I ~/.brew/opt/readline/include
+READLINE_DIR	= -l readline -L ~/.brew/opt/readline/lib
+READLINE_CFLAGS	= -I ~/.brew/opt/readline/include
 
 # jin-lee local workspace
-READLINE_DIR	= -l readline -L /opt/homebrew/opt/readline/lib
-READLINE_CFLAGS	= -I /opt/homebrew/opt/readline/include
+# READLINE_DIR	= -l readline -L /opt/homebrew/opt/readline/lib
+# READLINE_CFLAGS	= -I /opt/homebrew/opt/readline/include
 
 LIBFT			= ./libft/libft.a
 
