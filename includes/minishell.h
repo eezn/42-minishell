@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 04:56:51 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 06:01:22 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,16 @@ void	set_token_list(char *str, t_tlist **tlist);
 void	set_env_list(char **envp, t_elist **elist);
 
 /* Execute */
+char	**temp_envp(t_elist *elist);
+char	**temp_args(t_node *astree);
+void	clear_args(char **args);
+
 void	exec(t_tlist *tlist, t_elist *elist);
 void	inner_exec(t_node *astree, t_elist *elist);
 void	exec_cmd(t_node *astree, t_elist *elist);
 void	exec_pipe(t_node *astree, t_elist *elist);
 void	exec_rdr(t_node *astree, t_elist *elist);
+
 
 /* Signal */
 void	sig_parent(int signal);

@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/05 04:51:29 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/02/05 06:01:39 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/built_in/filter.c \
 				  \
 				  ./srcs/exec/exec_cmd.c \
+				  ./srcs/exec/exec_cmd_utils.c \
 				  ./srcs/exec/exec_pipe.c \
 				  ./srcs/exec/exec_rdr.c \
 				  ./srcs/exec/exec.c \
