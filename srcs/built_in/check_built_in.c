@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_in_check.c                                   :+:      :+:    :+:   */
+/*   check_built_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:59:30 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/04 19:13:50 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 06:07:18 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int built_in_check(char **token, t_elist *elist)
+int check_built_in(char **token, t_elist *elist)
 {	
 	if(ft_strnstr("echo", token[0], ft_strlen("echo")) != 0 && \
 		ft_strlen(token[0]) == ft_strlen("echo"))

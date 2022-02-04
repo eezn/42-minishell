@@ -6,13 +6,13 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 05:59:01 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 06:06:46 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* fork()된 자식프로세스 */
+/* fork()된 자식프로세스, 성공 or 실패시 프로세스 종료 free 필요없음 */
 void	inner_exec_cmd(char **args, t_elist *elist)
 {
 	char	**envp;
@@ -43,7 +43,7 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 
 	args = temp_args(astree);
 	filter(args, elist);
-	if (built_in_check(args, elist))
+	if (check_built_in(args, elist))
 	{
 		pid = fork();
 		if (!pid)
