@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/05 06:09:05 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/02/05 07:23:22 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,12 @@ vpath %.c $(SRCS_DIR)
 
 RM				= rm -f
 
+GREEN			=	"\033[0;32m"
+PURPLE			=	"\033[0;34m"
+PINK			=	"\033[0;35m"
+EOC				=	"\033[0;0m"
+CLEAR			=	"\x1b[1A\x1b[M"
+
 
 all: $(NAME)
 
@@ -94,10 +100,11 @@ all: $(NAME)
 # minishell
 $(NAME): $(OBJS) $(LIBFT)
 	@$(CC) $(CDEBUG) $(READLINE_FOLDER) $^ -o $@
-	@echo "\033[32m"$(NAME) built successfully."\033[0m"
+	@echo $(CLEAR)$(GREEN)$(NAME) built successfully!$(EOC)
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INCS_DIR) $(READLINE_HEADER) -c $^ -o $@
+	@echo $(PURPLE)"#####"$(EOC) $(PINK)$(notdir $(<:.c=.o))$(EOC)$(CLEAR)
 
 $(OBJS_DIR):
 	@mkdir -p $@
