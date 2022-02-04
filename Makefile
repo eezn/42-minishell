@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
+#    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/01/27 20:20:33 by sangchpa         ###   ########.fr        #
+#    Updated: 2022/02/04 16:23:16 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,17 +33,25 @@ INCS_DIR		= ./includes
 SRCS_DIR		= ./srcs \
 				  ./srcs/tools \
 				  ./srcs/data_structure \
+				  ./srcs/exec \
 				  ./srcs/prompt \
 				  ./srcs/built_in
 
 SRCS			= ./srcs/main.c \
 				  ./srcs/test.c \
 				  ./srcs/tools/loop.c \
+				  ./srcs/tools/ft_trim.c \
 				  \
 				  ./srcs/data_structure/list_token.c \
 				  ./srcs/data_structure/list_token_utils.c \
 				  ./srcs/data_structure/list_env.c \
 				  ./srcs/data_structure/list_env_utils.c \
+				  ./srcs/data_structure/astree.c \
+				  \
+				  ./srcs/exec/exec.c \
+				  ./srcs/exec/exec_cmd.c \
+				  ./srcs/exec/exec_pipe.c \
+				  ./srcs/exec/exec_rdr.c \
 				  \
 				  ./srcs/prompt/record_history.c \
 				  ./srcs/prompt/is_valid_line.c \
