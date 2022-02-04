@@ -6,11 +6,11 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 00:46:57 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/03 14:58:43 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 19:20:34 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data_structure.h"
+#include "minishell.h"
 
 t_node	*new_node(char *content, int type)
 {

@@ -3,49 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:30:42 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/02 14:12:40 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/04 19:25:03 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILT_IN_H
 # define BUILT_IN_H
 
-/* 일단 필요한 헤더 다 사용하고 나중에 헤더 중복 정리 */
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "../libft/includes/libft.h"
-# include "data_structure.h"
-
-/* Built in Functions */
-// void	built_in_env(t_elist *elist);
-// void	built_in_export(t_elist *elist, char *key, char *value);
-// void	built_in_unset(t_elist *elist, char *key);
-
-
-
-
+/* 리턴타입 변경 필요 */
 void	built_in_env(char **token, t_elist *elist);
 void	built_in_export(char **token, t_elist *elist);
 void	built_in_unset(char **token, t_elist *elist);
-
-int built_in_pwd(char** token);
-void built_in_echo(char** token);
-int built_in_cd(char** tmp, t_elist	* elist);
-
-int built_in_check(char **token, t_elist *elist);
-
-
-
-/*    arg_split*/
-char** arg_split(char* arg);
-
+int		built_in_pwd(char** token);
+void	built_in_echo(char** token);
+int		built_in_cd(char** tmp, t_elist	* elist);
+int		built_in_check(char **token, t_elist *elist);
 void	filter(char **token, t_elist *elist);
 
-int heredoc(char **token);
+/* Temp */
+int		heredoc(char **token);
 
 #endif
-

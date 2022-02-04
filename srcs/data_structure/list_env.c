@@ -6,11 +6,11 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 21:15:52 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/30 17:13:45 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 19:14:06 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data_structure.h"
+#include "minishell.h"
 
 t_elist	*create_env_list(void)
 {

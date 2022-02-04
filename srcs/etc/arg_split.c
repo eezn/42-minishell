@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   arg_split.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:33 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/02 20:51:04 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/04 19:13:55 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char	*ft_strldup(char *src, int len)
-{
-	char	*ret;
-
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	ft_strlcpy(ret, src, len + 1);
-	return (ret);
-}
 
 static int arg_count(char* arg)
 {

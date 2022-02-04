@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_in_env.c                                     :+:      :+:    :+:   */
+/*   macro.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 04:22:17 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:13:45 by jin-lee          ###   ########.fr       */
+/*   Created: 2022/02/04 19:08:24 by jin-lee           #+#    #+#             */
+/*   Updated: 2022/02/04 19:25:00 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MACRO_H
+# define MACRO_H
 
-void	built_in_env(char **token, t_elist *elist)
-{
-	if (token[1] != 0)
-		printf("env: too many arguments\n");
-	else
-		print_env_list(elist);
-}
+# define SQUOTE	39
+# define DQUOTE	34
+
+# define TRUE 1
+# define FALSE 0
+
+# define NONE 0
+# define COMMAND 1
+# define PATH 2
+# define HEREDOC 3
+
+# define PIPE 10
+# define R_II 11
+# define R_I 12
+# define R_O 13
+# define R_OO 14
+
+#endif

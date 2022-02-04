@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/04 16:23:16 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/02/04 19:20:22 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,13 @@ INCS_DIR		= ./includes
 SRCS_DIR		= ./srcs \
 				  ./srcs/tools \
 				  ./srcs/data_structure \
-				  ./srcs/exec \
 				  ./srcs/prompt \
-				  ./srcs/built_in
+				  ./srcs/built_in \
+				  ./srcs/exec \
+				  ./srcs/etc
 
 SRCS			= ./srcs/main.c \
+				  \
 				  ./srcs/tools/loop.c \
 				  ./srcs/tools/ft_trim.c \
 				  \
@@ -51,26 +53,27 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/data_structure/list_env_utils.c \
 				  ./srcs/data_structure/astree.c \
 				  \
+				  ./srcs/prompt/record_history.c \
+				  ./srcs/prompt/is_valid_line.c \
+				  ./srcs/prompt/get_token_list.c \
+				  ./srcs/prompt/set_env_list.c \
+				  ./srcs/prompt/signal.c \
+				  \
+				  ./srcs/built_in/built_in_check.c \
+				  ./srcs/built_in/built_in_cd.c \
+				  ./srcs/built_in/built_in_echo.c \
+				  ./srcs/built_in/built_in_env.c \
+				  ./srcs/built_in/built_in_export.c \
+				  ./srcs/built_in/built_in_unset.c \
+				  ./srcs/built_in/built_in_pwd.c \
+				  ./srcs/built_in/filter.c \
+				  \
 				  ./srcs/exec/exec.c \
 				  ./srcs/exec/exec_cmd.c \
 				  ./srcs/exec/exec_pipe.c \
 				  ./srcs/exec/exec_rdr.c \
 				  \
-				  ./srcs/prompt/record_history.c \
-				  ./srcs/prompt/is_valid_line.c \
-				  ./srcs/prompt/get_token_list.c \
-				  ./srcs/prompt/signal.c \
-				  \
-				  ./srcs/built_in/built_in_env.c \
-				  ./srcs/built_in/built_in_export.c \
-				  ./srcs/built_in/built_in_unset.c \
-				  ./srcs/built_in/built_in_cd.c \
-				  ./srcs/built_in/built_in_pwd.c \
-				  ./srcs/built_in/built_in_echo.c \
-				  ./srcs/built_in/built_in_check.c \
-				  ./srcs/built_in/arg_split.c \
-				  ./srcs/built_in/filter.c \
-				  ./srcs/built_in/heredoc.c \
+				  ./srcs/etc/heredoc.c \
 
 
 OBJS_DIR		= ./objects

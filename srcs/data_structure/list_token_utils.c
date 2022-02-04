@@ -6,11 +6,10 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:16:46 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/03 10:36:16 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 19:14:12 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data_structure.h"
 #include "minishell.h"
 
 void	print_token_list(t_tlist *tlist)

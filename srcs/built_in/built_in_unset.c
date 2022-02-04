@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_unset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:22 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/29 19:04:09 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/04 19:13:38 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built_in.h"
+#include "minishell.h"
 
 /* 함수 이름 임시 */
 static void	inner_unset(t_elist *elist, t_env *curr, t_env *prev)

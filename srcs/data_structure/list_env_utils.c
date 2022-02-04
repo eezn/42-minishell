@@ -6,11 +6,11 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:08:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 19:18:54 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 19:14:04 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data_structure.h"
+#include "minishell.h"
 
 void	print_env(t_env	*env)
 {

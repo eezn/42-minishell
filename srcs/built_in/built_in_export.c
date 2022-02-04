@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:20 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/29 19:26:30 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/04 19:13:42 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built_in.h"
+#include "minishell.h"
 
 /* 이미 존재하는 key -> update, 존재하지 않는 key -> append */
 void	built_in_export(char **token, t_elist *elist)
