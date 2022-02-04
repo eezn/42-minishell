@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 19:13:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 19:44:34 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/01/29 06:50:01 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,15 @@ void	test_unset(void)
 	
 	print_env(elist->head);
 	print_env(elist->tail);
+}
+
+void	test_trim(void)
+{
+	char		*str;
+
+	str = (char *)malloc(sizeof(char) * 30);
+	ft_strcpy(str, "       123       ");
+	// printf("%s<-\n", ft_rtrim(str));
+	// printf("%s<-\n", ft_ltrim(str));
+	printf("%s<-\n", ft_trim(str));
 }

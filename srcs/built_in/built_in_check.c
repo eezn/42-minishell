@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:59:30 by sangchpa          #+#    #+#             */
 /*   Updated: 2022/02/02 20:35:49 by sangchpa         ###   ########.fr       */
@@ -38,4 +38,71 @@ int built_in_check(char **token, t_elist *elist)
 	else
 		return 1;
 	return 0;			
+}
+
+// static char	*ft_strldup(char *src, int len)
+// {
+// 	char	*ret;
+
+// 	ret = (char *)malloc(sizeof(char) * (len + 1));
+// 	ft_strlcpy(ret, src, len + 1);
+// 	return (ret);
+// }
+
+int arg_count(char* arg_set)
+{
+
+	char	curr_quote;
+	int count;
+
+	count = 0;
+	curr_quote = 0;
+	while (*arg_set)
+	{
+		if (!curr_quote && (*arg_set == SQUOTE || *arg_set == DQUOTE))
+			curr_quote = *arg_set;
+		else if (curr_quote && *arg_set == curr_quote)
+			curr_quote = 0;
+		if(*arg_set == ' ' && !curr_quote)
+		{
+			if(*arg_set == ' ')
+				arg_set++;
+			count++;
+			continue;
+		}
+		arg_set++;
+	}
+	return (count);
+}
+
+char** arg_split(char* arg_set, int count)
+{
+	char** arg;
+	int idx;
+	char* start;
+	char* end;
+	char	curr_quote;
+
+	idx = 0;
+	curr_quote = 0;
+	start = arg_set;
+	arg = (char **)malloc(sizeof(char *) * count + 1);
+	while (*arg_set)
+	{
+		if (!curr_quote && (*arg_set == SQUOTE || *arg_set == DQUOTE))
+			curr_quote = *arg_set;
+		else if (curr_quote && *arg_set == curr_quote)
+			curr_quote = 0;
+		if(*arg_set == ' ' && !curr_quote)
+		{
+			if(*arg_set == ' ')
+				arg_set++;
+			end = arg_set - 1;
+			arg[idx] = ft_strldup(start, end - start);
+			idx++;
+			continue;
+		}
+		arg_set++;
+	}
+	return arg;
 }

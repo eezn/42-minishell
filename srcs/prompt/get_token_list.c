@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:21:28 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/27 05:29:21 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/03 10:37:18 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,8 @@ static char	*multiple_redirection(char c, int count)
 	return (ret);
 }
 
-static char	*ft_strldup(char *src, int len)
-{
-	char	*ret;
 
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	ft_strlcpy(ret, src, len + 1);
-	return (ret);
-}
-
+/* Token 단위 변경, 추가 확인 필요 */
 void	get_token_list(char *str, t_tlist **tlist)
 {
 	t_pv	pv;
@@ -51,14 +44,15 @@ void	get_token_list(char *str, t_tlist **tlist)
 			pv.curr_quote = *str;
 		else if (pv.curr_quote && *str == pv.curr_quote)
 			pv.curr_quote = 0;
-		else if (!pv.curr_quote && (*str == '|' || *str == '>' || *str == '<'))
+		else if (!pv.curr_quote && (*str == '|' || *str == '>' || *str == '<' \
+			|| *str == ' '))
 		{
 			pv.end = str;
 			if (pv.start != pv.end)
 				append_token(*tlist, ft_strldup(pv.start, pv.end - pv.start));
-			if (*str != '|' && *str == *(str + 1))
+			if (*str != '|' && *str != ' ' && *str == *(str + 1))
 				append_token(*tlist, multiple_redirection(*str++, 2));
-			else
+			else if (*str == '|' || *str == '<' || *str == '>')
 				append_token(*tlist, multiple_redirection(*str, 1));
 			pv.start = str + 1;
 		}
