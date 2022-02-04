@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/05 07:23:22 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/02/05 07:25:29 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,12 @@ CFLAGS			= -Wall -Werror -Wextra
 ifeq ($(DEBUG),true)
 	CDEBUG = -g
 endif
+
+GREEN			=	"\033[0;32m"
+PURPLE			=	"\033[0;34m"
+PINK			=	"\033[0;35m"
+EOC				=	"\033[0;0m"
+CLEAR			=	"\x1b[1A\x1b[M"
 
 # Cluster
 # READLINE_HEADER	= -I ~/.brew/opt/readline/include
@@ -86,12 +92,6 @@ OBJS			= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 vpath %.c $(SRCS_DIR)
 
 RM				= rm -f
-
-GREEN			=	"\033[0;32m"
-PURPLE			=	"\033[0;34m"
-PINK			=	"\033[0;35m"
-EOC				=	"\033[0;0m"
-CLEAR			=	"\x1b[1A\x1b[M"
 
 
 all: $(NAME)
