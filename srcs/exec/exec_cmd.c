@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 20:34:55 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 21:11:44 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,16 +141,14 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 		else
 			wait(NULL);
 	}
-	else
+	int i = 0;
+	while (args[i])
 	{
-		int i = 0;
-		while (args[i])
-		{
-			free(args[i]);
-			i++;
-		}
-		free(args);
+		free(args[i]);
+		i++;
 	}
+	free(args);
+
 	
 	printf("%d\n", getpid());
 }
