@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/04 19:20:22 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/02/05 04:51:29 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,16 @@ ifeq ($(DEBUG),true)
 endif
 
 # Cluster
-READLINE_DIR	= -l readline -L ~/.brew/opt/readline/lib
-READLINE_CFLAGS	= -I ~/.brew/opt/readline/include
+# READLINE_HEADER	= -I ~/.brew/opt/readline/include
+# READLINE_FOLDER	= -l readline -L ~/.brew/opt/readline/lib
 
 # jin-lee local workspace
-# READLINE_DIR	= -l readline -L /opt/homebrew/opt/readline/lib
-# READLINE_CFLAGS	= -I /opt/homebrew/opt/readline/include
+READLINE_HEADER	= -I /opt/homebrew/opt/readline/include
+READLINE_FOLDER	= -l readline -L /opt/homebrew/opt/readline/lib
 
 # sangchpa local workspace
-# READLINE_DIR	= -l readline -L /usr/local/opt/readline/lib
-# READLINE_CFLAGS	= -I /usr/local/opt/readline/include
+# READLINE_HEADER	= -I /usr/local/opt/readline/include
+# READLINE_FOLDER	= -l readline -L /usr/local/opt/readline/lib
 
 LIBFT			= ./libft/libft.a
 
@@ -44,18 +44,22 @@ SRCS_DIR		= ./srcs \
 
 SRCS			= ./srcs/main.c \
 				  \
-				  ./srcs/tools/loop.c \
+				  ./srcs/tools/ft_strldup.c \
 				  ./srcs/tools/ft_trim.c \
+				  ./srcs/tools/horizon_bar.c \
+				  ./srcs/tools/color_str.c \
 				  \
-				  ./srcs/data_structure/list_token.c \
-				  ./srcs/data_structure/list_token_utils.c \
 				  ./srcs/data_structure/list_env.c \
 				  ./srcs/data_structure/list_env_utils.c \
+				  ./srcs/data_structure/list_token.c \
+				  ./srcs/data_structure/list_token_utils.c \
 				  ./srcs/data_structure/astree.c \
+				  ./srcs/data_structure/insert_astree.c \
 				  \
-				  ./srcs/prompt/record_history.c \
-				  ./srcs/prompt/is_valid_line.c \
-				  ./srcs/prompt/get_token_list.c \
+				  ./srcs/prompt/main_loop.c \
+				  ./srcs/prompt/line_history.c \
+				  ./srcs/prompt/line_syntax.c \
+				  ./srcs/prompt/set_token_list.c \
 				  ./srcs/prompt/set_env_list.c \
 				  ./srcs/prompt/signal.c \
 				  \
@@ -68,12 +72,12 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/built_in/built_in_pwd.c \
 				  ./srcs/built_in/filter.c \
 				  \
-				  ./srcs/exec/exec.c \
 				  ./srcs/exec/exec_cmd.c \
 				  ./srcs/exec/exec_pipe.c \
 				  ./srcs/exec/exec_rdr.c \
+				  ./srcs/exec/exec.c \
 				  \
-				  ./srcs/etc/heredoc.c \
+				  ./srcs/etc/heredoc.c
 
 
 OBJS_DIR		= ./objects
@@ -88,17 +92,17 @@ all: $(NAME)
 
 # minishell
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CDEBUG) $(READLINE_DIR) $^ -o $@
+	@$(CC) $(CDEBUG) $(READLINE_FOLDER) $^ -o $@
 	@echo "\033[32m"$(NAME) built successfully."\033[0m"
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
-	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INCS_DIR) $(READLINE_CFLAGS) -c $^ -o $@
+	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INCS_DIR) $(READLINE_HEADER) -c $^ -o $@
 
 $(OBJS_DIR):
 	@mkdir -p $@
 
 
-# library
+# libft
 $(LIBFT):
 	@$(MAKE) -C ./libft all
 

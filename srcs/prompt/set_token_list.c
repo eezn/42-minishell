@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_token_list.c                                   :+:      :+:    :+:   */
+/*   set_token_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:21:28 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/03 10:37:18 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 02:22:32 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ static char	*multiple_redirection(char c, int count)
 	return (ret);
 }
 
-
-/* Token 단위 변경, 추가 확인 필요 */
-void	get_token_list(char *str, t_tlist **tlist)
+void	set_token_list(char *str, t_tlist **tlist)
 {
 	t_pv	pv;
 

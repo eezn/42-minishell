@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_structure.h                                   :+:      :+:    :+:   */
+/*   ms_data_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:39:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:17:20 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 04:38:26 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_STRUCTURE_H
-# define DATA_STRUCTURE_H
+#ifndef MS_DATA_STRUCT_H
+# define MS_DATA_STRUCT_H
 
 typedef struct s_tlist		t_tlist;
 typedef struct s_elist		t_elist;
@@ -76,7 +76,7 @@ void		print_env_list(t_elist *elist);
 t_env		*get_env_by_key(t_elist *elist, char *key);
 
 /* Abstract Syntax Tree */
-t_node		*get_astree(t_tlist *tlist);
+t_node		*set_astree(t_tlist *tlist);
 t_node		*insert_astree(t_node *astree, t_node *insert);
 void		delete_astree(t_node *astree);
 

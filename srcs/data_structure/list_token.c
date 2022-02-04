@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:26:19 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:14:18 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 03:11:52 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_tlist	*create_token_list(void)
 	return (tlist);
 }
 
+/* free -> content, tlist */
 void	delete_token_list(t_tlist *tlist)
 {
 	t_token	*curr;

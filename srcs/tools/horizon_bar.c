@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   horizon_bar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 19:13:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:21:58 by jin-lee          ###   ########.fr       */
+/*   Created: 2022/02/05 03:22:00 by jin-lee           #+#    #+#             */
+/*   Updated: 2022/02/05 04:59:29 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	test_env_list(t_elist *elist)
+void	horizon_bar(char c, char *color)
 {
-	t_env	*env;
-	
-	/* print env list */
-	print_env_list(elist); nl();
+	struct winsize	size;
+	int				idx;
 
-	/* search env by key */
-	env = get_env_by_key(elist, "USER");
-	if (env)
-		print_env(env);
-}
-
-void	test_trim(void)
-{
-	char		*str;
-
-	str = (char *)malloc(sizeof(char) * 30);
-	ft_strcpy(str, "       123       ");
-	// printf("%s<-\n", ft_rtrim(str));
-	// printf("%s<-\n", ft_ltrim(str));
-	printf("%s<-\n", ft_trim(str));
+	if (ioctl(STDIN_FILENO, TIOCGWINSZ, &size) == -1)
+		return ;
+	idx = 0;
+	ft_putstr_fd(color, STDOUT_FILENO);
+	while (idx++ < size.ws_col)
+		ft_putchar_fd(c, STDOUT_FILENO);
+	ft_putendl_fd(EOC, STDOUT_FILENO);
 }

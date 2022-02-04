@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 21:15:52 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:14:06 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 03:14:16 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_elist	*create_env_list(void)
 	return (elist);
 }
 
+/* free -> key, value, elist */
 void	delete_env_list(t_elist *elist)
 {
 	t_env	*curr;
@@ -56,7 +57,6 @@ static t_env	*new_env(char *key, char *value)
 }
 
 /* 중복되는 Key는 고려하지 않음, 초기 envp로 환경변수 리스트를 만들 때만 사용 */
-/* 중복되는 Key 처리는 built_in_export 함수 사용 */
 void	append_env(t_elist *elist, char *key, char *value)
 {
 	t_env	*env;

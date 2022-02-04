@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:16:46 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:14:12 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 04:17:45 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void	print_token_list(t_tlist *tlist)
 {
 	t_token	*curr;
-
+	
+	horizon_bar('>', RED);
 	curr = tlist->head;
 	while (curr)
 	{
-		printf("%s", curr->content);
-		printf("\033[31m_\033[0m\n");
+		printf("%s%s%s", MAGENTA, curr->content, EOC);
+		printf("%s_%s\n", RED, EOC);
 		curr = curr->next;
 	}
+	horizon_bar('<', RED);
 }
 
 /* Token content의 type을 판단 */
@@ -60,15 +62,17 @@ void	analize_token_list(t_tlist *tlist)
 
 	curr = tlist->head;
 	prev_type = NONE;
+	horizon_bar('>', RED); // 지우기
 	while (curr)
 	{
 		curr->content = ft_trim(curr->content);
 		inner_analize(curr, curr->content, prev_type);
 		/* Test >> */
-		printf("(%02d)%s", curr->type, curr->content);
-		printf("\033[31m_\033[0m\n");
+		printf("%s(%02d)%s%s", MAGENTA, curr->type, curr->content, EOC); // 지우기
+		printf("%s_%s\n", RED, EOC); // 지우기
 		/* << Test */
 		prev_type = curr->type;
 		curr = curr->next;
 	}
+	horizon_bar('<', RED); // 지우기
 }

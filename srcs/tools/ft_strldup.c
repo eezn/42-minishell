@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strldup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 03:58:58 by jin-lee          ###   ########.fr       */
+/*   Created: 2022/02/05 02:34:37 by jin-lee           #+#    #+#             */
+/*   Updated: 2022/02/05 02:37:48 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	unused(int argc, char **argv, char **envp)
+/* 문자열을 지정된 길이만큼 복제해서 반환하는 함수 */
+char	*ft_strldup(char *src, int len)
 {
-	(void)argc;
-	(void)argv;
-	(void)envp;
-}
+	char	*ret;
 
-int	main(int argc, char **argv, char **envp)
-{
-	unused(argc, argv, envp);
-	main_loop(envp);
-	// main_debug(envp, "echo abc 123 $USER");
-	return (EXIT_SUCCESS);
+	ret = (char *)malloc(sizeof(char) * (len + 1));
+	ft_strlcpy(ret, src, len + 1);
+	return (ret);
 }

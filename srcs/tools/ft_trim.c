@@ -6,21 +6,13 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 06:10:49 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/29 06:52:59 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 02:42:44 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strldup(char *src, int len)
-{
-	char	*ret;
-
-	ret = (char *)malloc(sizeof(char) * (len + 1));
-	ft_strlcpy(ret, src, len + 1);
-	return (ret);
-}
-
+/* 동적할당된 문자열을 대상으로 하는 ltrim 함수 */
 char	*ft_ltrim(char *str)
 {
 	char	*ret;
@@ -34,6 +26,7 @@ char	*ft_ltrim(char *str)
 	return (ret);
 }
 
+/* 동적할당된 문자열을 대상으로 하는 rtrim 함수 */
 char	*ft_rtrim(char *str)
 {
 	char	*ret;
@@ -47,6 +40,7 @@ char	*ft_rtrim(char *str)
 	return (ret);
 }
 
+/* 동적할당된 문자열을 대상으로 하는 trim 함수 */
 char	*ft_trim(char *str)
 {
 	return (ft_ltrim(ft_rtrim(str)));
