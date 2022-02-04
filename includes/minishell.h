@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/01/30 00:37:04 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/03 13:13:45 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,10 @@ void	setting_signal(void);
 void	test_env_list(t_elist *elist);
 void	test_unset(void);
 void	test_trim(void);
+
+void	exec(t_node *astree, t_elist *elist);
+void	exec_cmd(t_node *astree, t_elist *elist);
+void	exec_pipe(t_node *astree, t_elist *elist);
+void	exec_rdr(t_node *astree, t_elist *elist);
 
 #endif

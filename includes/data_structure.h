@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:39:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/03 10:35:19 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/03 14:59:09 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void		print_env_list(t_elist *elist);
 t_env		*get_env_by_key(t_elist *elist, char *key);
 
 /* Abstract Syntax Tree */
-t_node	*astree(t_tlist *tlist);
-t_node	*insert_astree(t_node *astree, t_node *insert);
+t_node		*get_astree(t_tlist *tlist);
+t_node		*insert_astree(t_node *astree, t_node *insert);
+void		delete_astree(t_node *astree);
 
 #endif

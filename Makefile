@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/03 10:38:16 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/02/04 16:20:46 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ INCS_DIR		= ./includes
 SRCS_DIR		= ./srcs \
 				  ./srcs/tools \
 				  ./srcs/data_structure \
+				  ./srcs/exec \
 				  ./srcs/prompt \
 				  ./srcs/built_in
 
@@ -46,6 +47,11 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/data_structure/list_env.c \
 				  ./srcs/data_structure/list_env_utils.c \
 				  ./srcs/data_structure/astree.c \
+				  \
+				  ./srcs/exec/exec.c \
+				  ./srcs/exec/exec_cmd.c \
+				  ./srcs/exec/exec_pipe.c \
+				  ./srcs/exec/exec_rdr.c \
 				  \
 				  ./srcs/prompt/record_history.c \
 				  ./srcs/prompt/is_valid_line.c \

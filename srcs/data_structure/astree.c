@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 00:46:57 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/03 10:37:02 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/03 14:58:43 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_node	*insert_root_rdr(t_node *root, t_node *insert)
 		insert->lnode = root;
 		return (insert);
 	}
-	return (root);
+	return (root);	// else 부분 확인 필요
 }
 
 t_node	*insert_root_cmd(t_node *root, t_node *insert)
@@ -64,7 +64,7 @@ t_node	*insert_root_cmd(t_node *root, t_node *insert)
 		insert->lnode = root;
 		return (insert);
 	}
-	return (root);
+	return (root);	// else 부분 확인 필요
 }
 
 t_node	*insert_root_pipe(t_node *root, t_node *insert)
@@ -88,7 +88,7 @@ t_node	*insert_root_pipe(t_node *root, t_node *insert)
 		insert->lnode = root;
 		return (insert);
 	}
-	return (root);
+	return (root);	// else 부분 확인 필요
 }
 
 t_node	*insert_astree(t_node *root, t_node *insert)
@@ -105,7 +105,7 @@ t_node	*insert_astree(t_node *root, t_node *insert)
 	return (root);
 }
 
-t_node	*astree(t_tlist *tlist)
+t_node	*get_astree(t_tlist *tlist)
 {
 	t_node	*astree;
 	t_node	*node;
@@ -123,6 +123,11 @@ t_node	*astree(t_tlist *tlist)
 	return (astree);
 }
 
-void	delete_astree(void)
+void	delete_astree(t_node *astree)
 {
+	if (astree->lnode != NULL)
+		delete_astree(astree->lnode);
+	if (astree->rnode != NULL)
+		delete_astree(astree->rnode);
+	free(astree);
 }
