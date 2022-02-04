@@ -6,36 +6,39 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:59:30 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/01/29 06:59:05 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/02 20:35:49 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int built_in_check(char *token, t_elist *elist)
-{
-	char **tmp;
-	tmp = ft_split(token, ' ');
-	// if(ft_strnstr("echo", tmp[0], ft_strlen("echo")) != 0)
-	// 	built_in_echo(token, tmp);
-	if(ft_strnstr("pwd", tmp[0], ft_strlen("pwd")) != 0)
-		built_in_pwd(tmp);
-	else if(ft_strnstr("cd", tmp[0], ft_strlen("cd")) != 0)
-		built_in_cd(tmp, elist);
-	// else if(ft_strnstr("env", tmp[0], ft_strlen("env")) != 0)
-	// 	env(token, env_list);
-	// else if(ft_strnstr("export", tmp[0], ft_strlen("export")) != 0)
-	// 	export(token, env_list);
-	// else if(ft_strnstr("unset", tmp[0], ft_strlen("unset")) != 0)
-	// 	unset(token, env_list);
-	else if(ft_strnstr("exit", tmp[0], ft_strlen("exit")) != 0)
+int built_in_check(char **token, t_elist *elist)
+{	
+	if(ft_strnstr("echo", token[0], ft_strlen("echo")) != 0 && \
+		ft_strlen(token[0]) == ft_strlen("echo"))
+		built_in_echo(token);
+	else if(ft_strnstr("pwd", token[0], ft_strlen("pwd")) != 0 && \
+			ft_strlen(token[0]) == ft_strlen("pwd"))
+		built_in_pwd(token);
+	else if(ft_strnstr("cd", token[0], ft_strlen("cd")) != 0 && \
+			ft_strlen(token[0]) == ft_strlen("cd"))
+		built_in_cd(token, elist);
+	else if(ft_strnstr("env", token[0], ft_strlen("env")) != 0 && \
+			ft_strlen(token[0]) == ft_strlen("env"))
+		built_in_env(token, elist);
+	else if(ft_strnstr("export", token[0], ft_strlen("export")) != 0 && \
+			ft_strlen(token[0]) == ft_strlen("export"))
+		built_in_export(token, elist);
+	else if(ft_strnstr("unset", token[0], ft_strlen("unset")) != 0 && \
+			ft_strlen(token[0]) == ft_strlen("unset"))
+		built_in_unset(token, elist);
+	else if(ft_strnstr("exit", token[0], ft_strlen("exit")) != 0 && \
+			ft_strlen(token[0]) == ft_strlen("exit"))
 		exit(1);
 	else
-		printf("IS NOT BUILT_IN!!\n");
-	// free();
+		return 1;
 	return 0;			
 }
-
 
 // static char	*ft_strldup(char *src, int len)
 // {

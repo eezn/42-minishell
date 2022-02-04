@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/03 13:13:45 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/04 16:40:30 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ int		is_valid_line(char *str);
 void	get_token_list(char *str, t_tlist **tlist);
 
 /* Signal */
-void	sig_handler(int signal);
-void	setting_signal(void);
+void sig_parent(int signal);
+void sig_child(int signal);
+void setting_parent_signal();
+void setting_child_signal();
 
 /* Test Functions */
 void	test_env_list(t_elist *elist);

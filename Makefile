@@ -27,6 +27,10 @@ READLINE_CFLAGS	= -I ~/.brew/opt/readline/include
 # READLINE_DIR	= -l readline -L /opt/homebrew/opt/readline/lib
 # READLINE_CFLAGS	= -I /opt/homebrew/opt/readline/include
 
+# sangchpa local workspace
+# READLINE_DIR	= -l readline -L /usr/local/opt/readline/lib
+# READLINE_CFLAGS	= -I /usr/local/opt/readline/include
+
 LIBFT			= ./libft/libft.a
 
 INCS_DIR		= ./includes
@@ -38,7 +42,6 @@ SRCS_DIR		= ./srcs \
 				  ./srcs/built_in
 
 SRCS			= ./srcs/main.c \
-				  ./srcs/test.c \
 				  ./srcs/tools/loop.c \
 				  ./srcs/tools/ft_trim.c \
 				  \
@@ -61,9 +64,14 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/built_in/built_in_env.c \
 				  ./srcs/built_in/built_in_export.c \
 				  ./srcs/built_in/built_in_unset.c \
-				  ./srcs/built_in/built_in_check.c \
 				  ./srcs/built_in/built_in_cd.c \
 				  ./srcs/built_in/built_in_pwd.c \
+				  ./srcs/built_in/built_in_echo.c \
+				  ./srcs/built_in/built_in_check.c \
+				  ./srcs/built_in/arg_split.c \
+				  ./srcs/built_in/filter.c \
+				  ./srcs/built_in/heredoc.c \
+
 
 OBJS_DIR		= ./objects
 OBJS			= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))

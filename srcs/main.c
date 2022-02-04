@@ -32,6 +32,61 @@ t_elist	*set_env_list(char **envp)
 	return (elist);
 }
 
+void line_free(char* line, char**token)
+{
+	int i;
+	i = 0;
+
+	while(token[i])
+	{
+		free(token[i]);
+		i++;
+	}
+	free(token);
+	free(line);
+	return ((void)0);
+}
+
+
+void print_test(char** token)
+{
+	int i;
+	i = 0;
+
+	while(token[i])
+	{
+		printf("|%d = %s|\n",i, token[i]);
+		i++;
+	}
+}
+
+static void	execute(char **token, t_elist *elist)
+{
+	t_env	*env;
+	char	**pathv;
+	char	*temp;
+	char	*path;
+	int		i;
+
+	i = 0;
+	env = get_env_by_key(elist, "PATH");
+	pathv = ft_split(env->value + 5, ':');
+	while (pathv[i])
+	{
+		temp = ft_strjoin(pathv[i], "/");
+		path = ft_strjoin(temp, token[0]);
+		free(temp);
+		if (access(path, F_OK) == 0)
+		{
+			execve(path, token, NULL);
+			perror(token[0]);
+		}
+		free(path);
+		i++;
+	}
+}
+
+
 int	main(int argc, char **argv, char **envp)
 {
 	char		*line;
@@ -46,6 +101,7 @@ int	main(int argc, char **argv, char **envp)
 	// test_env_list(elist);
 	// test_unset();
 	// test_trim();
+
 
 	/* 추후 분리 */
 	while (1)
@@ -62,6 +118,7 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		tlist = create_token_list();
 		get_token_list(line, &tlist);
+
 		analize_token_list(tlist);
 		
 		astree = get_astree(tlist); 
