@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/02 20:52:04 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:42:10 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc > 1 || argv[1])
 		return (EXIT_FAILURE);
-	setting_signal();
+	setting_parent_signal();
 	elist = set_env_list(envp);
 	// test_env_list(elist);
 	// test_unset();
@@ -120,12 +120,16 @@ int	main(int argc, char **argv, char **envp)
 			pid = fork();
 			if (!pid)
 			{
+				setting_child_signal();
 				execute(token, elist);
 				perror(token[0]);
 				return 0;
 			}
 			else
+			{
+				setting_parent_signal();
 				wait(&pid);
+			}
 		}
 		// heredoc(token);
 

@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:14 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/02 21:02:19 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:39:59 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,47 @@ cat 이나 grep 실행중에 ctrl+d 발생시 블락.
 */
 
 
-void sig_handler(int signal)
+void sig_parent(int signal)
 {
     if (signal == SIGINT)// CTRL + C
 	{
-		rl_on_new_line();
-		rl_redisplay();
+		printf("\n");
+
 		rl_replace_line("", 1);
-		printf("\033[K");
-		printf("\npicoshell$ ");
-	}
-    else if (signal == SIGTERM)// CTRL + D
-        exit(-1);
-    else
-	{
-		////fork 상태일때만 종료
-		kill(0, SIGTERM);
+		rl_redisplay();
+		
+		
+		rl_on_new_line();
+		// rl_redisplay();
+		// rl_redisplay();
+		// rl_on_new_line();
+		// printf("\033[K");
+		// printf("\n?picoshell$ \n");
 	}
 }
 
-void setting_signal()
+void sig_child(int signal)
 {
-    signal(SIGINT, sig_handler);  // CTRL + C
-    signal(SIGTERM, sig_handler); // CTRL + D
-    signal(SIGQUIT, sig_handler); // CTRL + /
+	if (signal == SIGINT || signal == SIGTERM || signal == SIGQUIT)
+	{
+		exit(1);
+	}
 }
 
-//입력시 종료안되는 문제
+
+
+void setting_parent_signal()
+{
+    // signal(SIGINT, sig_handler);  // CTRL + C
+    // signal(SIGTERM, sig_handler); // CTRL + D
+    // signal(SIGQUIT, sig_handler); // CTRL + /
+	signal(SIGINT, sig_parent);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void setting_child_signal()
+{
+	signal(SIGINT, sig_child);  // CTRL + C
+    signal(SIGTERM, sig_child); // CTRL + D
+    signal(SIGQUIT, sig_child); // CTRL + /
+}
