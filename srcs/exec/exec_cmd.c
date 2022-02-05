@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 06:06:46 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 16:32:55 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,17 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 	char	**args;
 	pid_t	pid;
 
+	setting_execve_signal();
 	args = temp_args(astree);
 	filter(args, elist);
 	if (check_built_in(args, elist))
 	{
 		pid = fork();
 		if (!pid)
-		{
-			setting_child_signal();
 			inner_exec_cmd(args, elist);
-		}
 		else
 			wait(NULL);
 	}
+	setting_parent_signal();
 	clear_args(args);
 }

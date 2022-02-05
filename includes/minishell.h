@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 06:01:22 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 16:06:56 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	exec_rdr(t_node *astree, t_elist *elist);
 
 /* Signal */
 void	sig_parent(int signal);
-void	sig_child(int signal);
+void	sig_execve(int signal);
 void	setting_parent_signal();
-void	setting_child_signal();
+void	setting_execve_signal();
 
 #endif

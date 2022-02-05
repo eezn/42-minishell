@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:14 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/04 16:39:59 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/05 16:32:47 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,45 +37,42 @@ cat 이나 grep 실행중에 ctrl+d 발생시 블락.
 
 void sig_parent(int signal)
 {
-    if (signal == SIGINT)// CTRL + C
-	{
+    if (signal == SIGINT)// ^C출력 버전
+	{	
 		printf("\n");
-
+		rl_on_new_line();
 		rl_replace_line("", 1);
 		rl_redisplay();
-		
-		
-		rl_on_new_line();
-		// rl_redisplay();
-		// rl_redisplay();
-		// rl_on_new_line();
-		// printf("\033[K");
-		// printf("\n?picoshell$ \n");
 	}
+
+	// if (signal == SIGINT)// ^C출력안하지만 이전 프롬프트 지움
+	// {
+	// 	printf("\033[K");
+	// 	printf("\e[32mpicoshell$ \e[0m\n");
+	// 	rl_on_new_line();
+	// 	rl_replace_line("", 1);
+	// 	rl_redisplay();
+	// }
 }
 
-void sig_child(int signal)
+
+void sig_execve(int signal)
 {
-	if (signal == SIGINT || signal == SIGTERM || signal == SIGQUIT)
-	{
-		exit(1);
-	}
+	if (signal == SIGINT)
+		printf("\n");
+	if (signal == SIGQUIT)
+		printf("Quit: 3\n");
 }
 
+void setting_execve_signal()
+{
+	signal(SIGINT, sig_execve);
+	signal(SIGQUIT, sig_execve);
+}
 
 
 void setting_parent_signal()
 {
-    // signal(SIGINT, sig_handler);  // CTRL + C
-    // signal(SIGTERM, sig_handler); // CTRL + D
-    // signal(SIGQUIT, sig_handler); // CTRL + /
 	signal(SIGINT, sig_parent);
 	signal(SIGQUIT, SIG_IGN);
-}
-
-void setting_child_signal()
-{
-	signal(SIGINT, sig_child);  // CTRL + C
-    signal(SIGTERM, sig_child); // CTRL + D
-    signal(SIGQUIT, sig_child); // CTRL + /
 }
