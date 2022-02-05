@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 16:32:55 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/05 23:14:22 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 		if (!pid)
 			inner_exec_cmd(args, elist);
 		else
-			wait(NULL);
+			waitpid(pid, NULL, 0);
 	}
 	setting_parent_signal();
 	clear_args(args);

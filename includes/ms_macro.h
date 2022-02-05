@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:08:24 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 20:10:48 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 23:55:38 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # define R_I 12
 # define R_O 13
 # define R_OO 14
+
+# define WRITE 1
+# define READ 0
 
 # define PROMPT "\e[35mpico\e[0m\e[32mshell\e[0m\e[35m$ \e[0m"
 
