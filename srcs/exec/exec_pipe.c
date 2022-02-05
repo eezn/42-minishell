@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:43 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/06 00:29:11 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/06 07:03:04 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	exec_pipe(t_node *astree, t_elist *elist)
 		if (!lchild)
 		{
 			close(pipe_fd[READ]);
-			dup2(pipe_fd[WRITE], STDOUT_FILENO);
-			close(pipe_fd[WRITE]);
+			dup_and_close(pipe_fd[WRITE], STDOUT_FILENO);
 			inner_exec(astree->lnode, elist);
 			exit(EXIT_SUCCESS);
 		}
@@ -41,8 +40,7 @@ void	exec_pipe(t_node *astree, t_elist *elist)
 		if (!rchild)
 		{
 			close(pipe_fd[WRITE]);
-			dup2(pipe_fd[READ], STDIN_FILENO);
-			close(pipe_fd[READ]);
+			dup_and_close(pipe_fd[READ], STDIN_FILENO);
 			inner_exec(astree->rnode, elist);
 			exit(EXIT_SUCCESS);
 		}

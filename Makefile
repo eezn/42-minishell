@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/05 20:12:04 by jin-lee          ###   ########.fr        #
+#    Updated: 2022/02/06 06:30:23 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,7 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/exec/exec_cmd_utils.c \
 				  ./srcs/exec/exec_pipe.c \
 				  ./srcs/exec/exec_rdr.c \
+				  ./srcs/exec/exec_rdr_utils.c \
 				  ./srcs/exec/exec.c \
 				  \
 				  ./srcs/etc/heredoc.c

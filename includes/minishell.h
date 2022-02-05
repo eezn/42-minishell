@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/06 01:11:49 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/06 07:02:03 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ void	set_token_list(char *str, t_tlist **tlist);
 void	set_env_list(char **envp, t_elist **elist);
 
 /* Execute */
+int		open_file(char *path, int type);
+void	dup_and_close(int fd1, int fd2);
+void	restore_fd(int	*fd);
+void	rl_until_sign(char *sign, int fd);
+
 char	**temp_envp(t_elist *elist);
 char	**temp_args(t_node *astree);
 void	clear_args(char **args);
