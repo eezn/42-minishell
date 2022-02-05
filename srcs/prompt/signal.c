@@ -37,22 +37,15 @@ cat 이나 grep 실행중에 ctrl+d 발생시 블락.
 
 void sig_parent(int signal)
 {
-    if (signal == SIGINT)// ^C출력 버전
-	{	
-		printf("\n");
+	if (signal == SIGINT)// 테스트
+	{
 		rl_on_new_line();
-		rl_replace_line("", 1);
+		rl_redisplay();
+		printf("%c[K\n", 27);
+		rl_on_new_line();
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-
-	// if (signal == SIGINT)// ^C출력안하지만 이전 프롬프트 지움
-	// {
-	// 	printf("\033[K");
-	// 	printf("\e[32mpicoshell$ \e[0m\n");
-	// 	rl_on_new_line();
-	// 	rl_replace_line("", 1);
-	// 	rl_redisplay();
-	// }
 }
 
 
