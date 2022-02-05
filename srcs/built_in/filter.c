@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:37 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/05 19:24:37 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/05 19:41:03 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,15 @@ static int	is_env(char *str)
 static void	interprete_env(char *tmp, char *key, t_elist *elist)
 {
 	t_env	*ev;
+	char *global_val;
 
 	if (key[0] == '?' && ft_strlen(key) == 1)
-		ft_strlcat(tmp, ft_itoa(global), \
-					ft_strlen(tmp) + ft_strlen(ft_itoa(global)) + 1);
+	{
+		global_val = ft_itoa(global);
+		ft_strlcat(tmp, global_val, \
+					ft_strlen(tmp) + ft_strlen(global_val) + 1);
+		free(global_val);
+	}
 	else
 	{
 		ev = get_env_by_key(elist, key);
