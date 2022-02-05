@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 16:06:56 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/05 18:06:14 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	inner_exec(t_node *astree, t_elist *elist);
 void	exec_cmd(t_node *astree, t_elist *elist);
 void	exec_pipe(t_node *astree, t_elist *elist);
 void	exec_rdr(t_node *astree, t_elist *elist);
-
 
 /* Signal */
 void	sig_parent(int signal);

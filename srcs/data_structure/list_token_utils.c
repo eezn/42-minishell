@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:16:46 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 04:17:45 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 19:49:26 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_token_list(t_tlist *tlist)
 	curr = tlist->head;
 	while (curr)
 	{
-		printf("%s%s%s", MAGENTA, curr->content, EOC);
+		printf("%s%s%s", PINK, curr->content, EOC);
 		printf("%s_%s\n", RED, EOC);
 		curr = curr->next;
 	}
@@ -68,7 +68,7 @@ void	analize_token_list(t_tlist *tlist)
 		curr->content = ft_trim(curr->content);
 		inner_analize(curr, curr->content, prev_type);
 		/* Test >> */
-		printf("%s(%02d)%s%s", MAGENTA, curr->type, curr->content, EOC); // 지우기
+		printf("%s(%02d)%s%s", PINK, curr->type, curr->content, EOC); // 지우기
 		printf("%s_%s\n", RED, EOC); // 지우기
 		/* << Test */
 		prev_type = curr->type;

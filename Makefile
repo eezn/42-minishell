@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
+#    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/05 16:32:54 by sangchpa         ###   ########.fr        #
+#    Updated: 2022/02/05 20:12:04 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,19 +19,19 @@ ifeq ($(DEBUG),true)
 	CDEBUG = -g
 endif
 
-GREEN			=	"\033[0;32m"
-PURPLE			=	"\033[0;34m"
-PINK			=	"\033[0;35m"
-EOC				=	"\033[0;0m"
+GREEN			=	"\033[32m"
+PURPLE			=	"\033[34m"
+PINK			=	"\033[35m"
+EOC				=	"\033[0m"
 CLEAR			=	"\x1b[1A\x1b[M"
 
 # Cluster
-READLINE_HEADER	= -I ~/.brew/opt/readline/include
-READLINE_FOLDER	= -l readline -L ~/.brew/opt/readline/lib
+# READLINE_HEADER	= -I ~/.brew/opt/readline/include
+# READLINE_FOLDER	= -l readline -L ~/.brew/opt/readline/lib
 
 # jin-lee local workspace
-# READLINE_HEADER	= -I /opt/homebrew/opt/readline/include
-# READLINE_FOLDER	= -l readline -L /opt/homebrew/opt/readline/lib
+READLINE_HEADER	= -I /opt/homebrew/opt/readline/include
+READLINE_FOLDER	= -l readline -L /opt/homebrew/opt/readline/lib
 
 # sangchpa local workspace
 # READLINE_HEADER	= -I /usr/local/opt/readline/include
@@ -100,7 +100,7 @@ all: $(NAME)
 # minishell
 $(NAME): $(OBJS) $(LIBFT)
 	@$(CC) $(CDEBUG) $(READLINE_FOLDER) $^ -o $@
-	@echo $(CLEAR)$(GREEN)$(NAME) built successfully!$(EOC)
+	@echo $(CLEAR)$(GREEN)$(NAME) built successfully.$(EOC)
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INCS_DIR) $(READLINE_HEADER) -c $^ -o $@
