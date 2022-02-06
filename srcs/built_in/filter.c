@@ -6,13 +6,31 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:37 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/05 19:41:03 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/06 15:59:35 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#define global 100 //임시 글로벌 변수 
+/*
+
+$?정리
+
+성공적인 입력 > 0
+
+없는 명령어 입력 > 127
+
+
+없는 파일 : No such file or directory > 1
+
+
+cat실행 후 ctrl + c > 130
+cat실행 후 ctrl + \ > 131
+cat실행 후 ctrl + d > 0
+
+*/
+
+extern int	g_state;
 
 static int	is_env(char *str)
 {
@@ -31,11 +49,11 @@ static int	is_env(char *str)
 static void	interprete_env(char *tmp, char *key, t_elist *elist)
 {
 	t_env	*ev;
-	char *global_val;
+	char	*global_val;
 
 	if (key[0] == '?' && ft_strlen(key) == 1)
 	{
-		global_val = ft_itoa(global);
+		global_val = ft_itoa(g_state);
 		ft_strlcat(tmp, global_val, \
 					ft_strlen(tmp) + ft_strlen(global_val) + 1);
 		free(global_val);
@@ -65,7 +83,7 @@ static int	find_env(char *token, char *tmp, t_elist *elist, int start)
 			ft_strlcat(tmp, token + start, ft_strlen(tmp) + end - start + 1);
 			i++;
 			while (token[i + 1] != ' ' && token[i + 1] != '$' && \
-			token[i + 1] != 0 && token[i + 1] != SQUOTE && token[i + 1] != '?')
+			token[i + 1] != 0 && token[i + 1] != SQUOTE && token[i] != '?')
 				i++;
 			key = ft_strldup(token + end + 1, i - end);
 			interprete_env(tmp, key, elist);
