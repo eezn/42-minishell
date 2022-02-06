@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:37 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/06 15:59:35 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 00:01:44 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ cat실행 후 ctrl + d > 0
 
 */
 
-extern int	g_state;
-
 static int	is_env(char *str)
 {
 	int		i;
@@ -53,7 +51,7 @@ static void	interprete_env(char *tmp, char *key, t_elist *elist)
 
 	if (key[0] == '?' && ft_strlen(key) == 1)
 	{
-		global_val = ft_itoa(g_state);
+		global_val = ft_itoa(elist->exit_status);
 		ft_strlcat(tmp, global_val, \
 					ft_strlen(tmp) + ft_strlen(global_val) + 1);
 		free(global_val);

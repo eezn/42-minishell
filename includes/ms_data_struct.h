@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_data_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:39:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 04:38:26 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/06 23:39:35 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ struct s_elist
 	t_env		*head;
 	t_env		*tail;
 	size_t		count;
+	int			exit_status;
 };
 
 struct	s_token

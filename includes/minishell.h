@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 16:06:56 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/06 23:43:54 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>
+# include <errno.h>
 # include <sys/wait.h>
 # include <sys/ioctl.h>
 # include <readline/readline.h>

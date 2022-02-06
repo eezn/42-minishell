@@ -6,7 +6,7 @@
 #    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/05 16:32:54 by sangchpa         ###   ########.fr        #
+#    Updated: 2022/02/06 23:41:17 by sangchpa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,16 @@ EOC				=	"\033[0;0m"
 CLEAR			=	"\x1b[1A\x1b[M"
 
 # Cluster
-READLINE_HEADER	= -I ~/.brew/opt/readline/include
-READLINE_FOLDER	= -l readline -L ~/.brew/opt/readline/lib
+# READLINE_HEADER	= -I ~/.brew/opt/readline/include
+# READLINE_FOLDER	= -l readline -L ~/.brew/opt/readline/lib
 
 # jin-lee local workspace
 # READLINE_HEADER	= -I /opt/homebrew/opt/readline/include
 # READLINE_FOLDER	= -l readline -L /opt/homebrew/opt/readline/lib
 
 # sangchpa local workspace
-# READLINE_HEADER	= -I /usr/local/opt/readline/include
-# READLINE_FOLDER	= -l readline -L /usr/local/opt/readline/lib
+READLINE_HEADER	= -I /usr/local/opt/readline/include
+READLINE_FOLDER	= -l readline -L /usr/local/opt/readline/lib
 
 LIBFT			= ./libft/libft.a
 

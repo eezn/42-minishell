@@ -6,13 +6,11 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/06 15:58:39 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/06 23:38:21 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int g_state;
 
 static void	unused(int argc, char **argv, char **envp)
 {
