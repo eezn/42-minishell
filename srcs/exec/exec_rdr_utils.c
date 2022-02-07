@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 06:28:30 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/06 07:05:07 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 00:31:01 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	dup_and_close(int fd1, int fd2)
 
 void	restore_fd(int	*fd)
 {
-	dup2(fd[1], STDOUT_FILENO);
 	dup2(fd[0], STDIN_FILENO);
+	dup2(fd[1], STDOUT_FILENO);
 }
 
 /* 종료단어가 나오기 전까지 멀티 라인을 fd에 기록 */
