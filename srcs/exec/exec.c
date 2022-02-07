@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 12:14:33 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 18:38:29 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 21:29:55 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	exec(t_tlist *tlist, t_elist *elist)
 	t_node	*astree;
 	int		fd[2];
 	
-	fd[0] = STDIN_FILENO;	// 표준입력 백업
-	fd[1] = STDOUT_FILENO;	// 표준출력 백업
+	fd[0] = dup(STDIN_FILENO);	// 표준입력 백업
+	fd[1] = dup(STDOUT_FILENO);	// 표준출력 백업
 	
 	astree = set_astree(tlist); 
 	if (!check_syntax(astree))
