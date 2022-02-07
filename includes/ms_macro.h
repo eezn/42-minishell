@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_macro.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:08:24 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 16:22:42 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/06 01:05:14 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define BUFF_SIZE 1024
 
-# define FALSE 0
 # define TRUE 1
+# define FALSE 0
 
 # define SQUOTE 39
 # define DQUOTE 34
@@ -32,15 +32,18 @@
 # define R_O 13
 # define R_OO 14
 
-# define PROMPT "\e[32mpicoshell$ \e[0m"
+# define WRITE 1
+# define READ 0
+
+# define PROMPT "\e[35mpico\e[0m\e[32mshell\e[0m\e[35m$ \e[0m"
 
 /* Color */
-# define RED "\e[0;31m"
-# define GREEN "\e[0;32m"
-# define YELLOW "\e[1;33m"
-# define LAVENDER "\e[1;34m"
-# define MAGENTA "\e[0;35m"
-# define WHITE "\e[1;37m"
-# define EOC "\e[0;0m"
+# define RED "\e[31m"
+# define GREEN "\e[32m"
+# define YELLOW "\e[33m"
+# define PURPLE "\e[34m"
+# define PINK "\e[35m"
+# define BASIC "\e[37m"
+# define EOC "\e[0m"
 
 #endif

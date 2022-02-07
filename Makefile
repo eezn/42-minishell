@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
+#    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
 #    Updated: 2022/02/07 14:24:47 by sangchpa         ###   ########.fr        #
@@ -19,10 +19,10 @@ ifeq ($(DEBUG),true)
 	CDEBUG = -g
 endif
 
-GREEN			=	"\033[0;32m"
-PURPLE			=	"\033[0;34m"
-PINK			=	"\033[0;35m"
-EOC				=	"\033[0;0m"
+GREEN			=	"\033[32m"
+PURPLE			=	"\033[34m"
+PINK			=	"\033[35m"
+EOC				=	"\033[0m"
 CLEAR			=	"\x1b[1A\x1b[M"
 
 # Cluster
@@ -82,6 +82,7 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/exec/exec_cmd_utils.c \
 				  ./srcs/exec/exec_pipe.c \
 				  ./srcs/exec/exec_rdr.c \
+				  ./srcs/exec/exec_rdr_utils.c \
 				  ./srcs/exec/exec.c \
 				  \
 				  ./srcs/etc/heredoc.c
@@ -100,7 +101,7 @@ all: $(NAME)
 # minishell
 $(NAME): $(OBJS) $(LIBFT)
 	@$(CC) $(CDEBUG) $(READLINE_FOLDER) $^ -o $@
-	@echo $(CLEAR)$(GREEN)$(NAME) built successfully!$(EOC)
+	@echo $(CLEAR)$(GREEN)$(NAME) built successfully.$(EOC)
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INCS_DIR) $(READLINE_HEADER) -c $^ -o $@

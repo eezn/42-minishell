@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 01:59:04 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 02:58:00 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 00:29:08 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ static t_tlist	*token(t_tlist *tlist, char *line)
 	return (tlist);
 }
 
-static void	clear(t_tlist *tlist, char *line)
+static void	clear(t_tlist *tlist, t_elist *elist, char *line)
 {
 	delete_token_list(tlist);
+	unlink(get_env_by_key(elist, "HEREDOC")->value);
 	free(line);
 }
 
@@ -35,7 +36,7 @@ void	main_loop(char **envp)
 
 	set_env_list(envp, &elist);
 	setting_parent_signal();
-	while (TRUE)
+	while (1)
 	{
 		line = readline(PROMPT);
 		if (!line)
@@ -46,7 +47,7 @@ void	main_loop(char **envp)
 			continue ;
 		tlist = token(tlist, line);
 		exec(tlist, elist);
-		clear(tlist, line);
+		clear(tlist, elist, line);
 	}
 }
 
@@ -70,5 +71,5 @@ void	main_debug(char **envp, char *test_line)
 	tlist = NULL;
 	tlist = token(tlist, line);
 	exec(tlist, elist);
-	clear(tlist, line);
+	clear(tlist, elist, line);
 }

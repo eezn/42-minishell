@@ -18,32 +18,40 @@ static int	check_syntax(t_node *astree)
 		return (TRUE);
 	if (astree->type == R_I || astree->type == R_II \
 		|| astree->type == R_O || astree->type == R_OO || astree->type == PIPE)
-		if (astree->lnode == NULL)
+		if (astree->rnode == NULL)
 			return (FALSE);
-	if (!check_syntax(astree->rnode) || !check_syntax(astree->lnode))
+	if (astree->type == COMMAND && astree->lnode != NULL)
 		return (FALSE);
+	if (!check_syntax(astree->lnode) || !check_syntax(astree->rnode))
+		return (FALSE); 
 	return (TRUE);
 }
 
-void	inner_exec(t_node *astree, t_elist *elist)
+void	inner_exec(t_node *astree, t_elist *elist, int *fd)
 {
 	if (astree->type == COMMAND)
 		exec_cmd(astree, elist);
 	else if (astree->type == PIPE)
-		exec_pipe(astree, elist);
+		exec_pipe(astree, elist, fd);
 	else if (astree->type == R_I || astree->type == R_II \
 		|| astree->type == R_O || astree->type == R_OO)
-		exec_rdr(astree, elist);
+		exec_rdr(astree, elist, fd);
 }
 
 void	exec(t_tlist *tlist, t_elist *elist)
 {
 	t_node	*astree;
-
-	astree = set_astree(tlist);
+	int		fd[2];
+	
+	fd[0] = STDIN_FILENO;	// 표준입력 백업
+	fd[1] = STDOUT_FILENO;	// 표준출력 백업
+	
+	astree = set_astree(tlist); 
 	if (!check_syntax(astree))
 		printf("Syntax Error\n");
 	else
-		inner_exec(astree, elist);
+		inner_exec(astree, elist, fd);
+
 	delete_astree(astree);
+	restore_fd(fd);			// 표준입출력 복구
 }
