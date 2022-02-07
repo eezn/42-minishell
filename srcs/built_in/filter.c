@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:37 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/04 19:52:01 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 00:01:44 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+
+$?정리
+
+성공적인 입력 > 0
+
+없는 명령어 입력 > 127
+
+
+없는 파일 : No such file or directory > 1
+
+
+cat실행 후 ctrl + c > 130
+cat실행 후 ctrl + \ > 131
+cat실행 후 ctrl + d > 0
+
+*/
 
 static int	is_env(char *str)
 {
@@ -26,12 +44,25 @@ static int	is_env(char *str)
 	return (0);
 }
 
-static int	fine_env_end(char *token, int i)
+static void	interprete_env(char *tmp, char *key, t_elist *elist)
 {
-	while (token[i + 1] != ' ' && token[i + 1] != '$' && \
-			token[i + 1] != 0 && token[i + 1] != SQUOTE)
-		i++;
-	return (i);
+	t_env	*ev;
+	char	*global_val;
+
+	if (key[0] == '?' && ft_strlen(key) == 1)
+	{
+		global_val = ft_itoa(elist->exit_status);
+		ft_strlcat(tmp, global_val, \
+					ft_strlen(tmp) + ft_strlen(global_val) + 1);
+		free(global_val);
+	}
+	else
+	{
+		ev = get_env_by_key(elist, key);
+		if (ev)
+			ft_strlcat(tmp, ev->value, \
+						ft_strlen(tmp) + ft_strlen(ev->value) + 1);
+	}
 }
 
 static int	find_env(char *token, char *tmp, t_elist *elist, int start)
@@ -39,21 +70,21 @@ static int	find_env(char *token, char *tmp, t_elist *elist, int start)
 	int		i;
 	int		end;
 	char	*key;
-	t_env	*env;
 
 	i = start;
 	while (token[i])
 	{
-		if (token[i] == '$' && token[i + 1] != ' ' && token[i + 1] != 0)
+		if (token[i] == '$' && token[i + 1] != ' ' && \
+			token[i + 1] != 0 && token[i + 1] != '$')
 		{
 			end = i;
 			ft_strlcat(tmp, token + start, ft_strlen(tmp) + end - start + 1);
-			i = fine_env_end(token, i);
+			i++;
+			while (token[i + 1] != ' ' && token[i + 1] != '$' && \
+			token[i + 1] != 0 && token[i + 1] != SQUOTE && token[i] != '?')
+				i++;
 			key = ft_strldup(token + end + 1, i - end);
-			env = get_env_by_key(elist, key);
-			if (env)
-				ft_strlcat(tmp, env->value, \
-				ft_strlen(tmp) + ft_strlen(env->value) + 1);
+			interprete_env(tmp, key, elist);
 			free(key);
 			start = i + 1;
 		}

@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:14 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/05 16:32:47 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:47:19 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ cat 이나 grep 실행중에 ctrl+d 발생시 블락.
 작동하지 않는 것이 있으면 불완전한 작업 플래그를 사용하십시오.
 */
 
-
-void sig_parent(int signal)
+void	sig_parent(int signal)
 {
-	if (signal == SIGINT)// 테스트
+	if (signal == SIGINT)
 	{
 		rl_on_new_line();
 		rl_redisplay();
@@ -48,8 +47,7 @@ void sig_parent(int signal)
 	}
 }
 
-
-void sig_execve(int signal)
+void	sig_execve(int signal)
 {
 	if (signal == SIGINT)
 		printf("\n");
@@ -57,14 +55,13 @@ void sig_execve(int signal)
 		printf("Quit: 3\n");
 }
 
-void setting_execve_signal()
+void	setting_execve_signal(void)
 {
 	signal(SIGINT, sig_execve);
 	signal(SIGQUIT, sig_execve);
 }
 
-
-void setting_parent_signal()
+void	setting_parent_signal(void)
 {
 	signal(SIGINT, sig_parent);
 	signal(SIGQUIT, SIG_IGN);

@@ -3,39 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_echo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:17 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/04 19:13:47 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 19:32:37 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void built_in_echo(char** token)
+static void	print_loop(char **token, int i)
 {
-	int i;
+	while (token[++i] != 0)
+	{
+		printf("%s", token[i]);
+		if ((token[i + 1] != 0))
+			printf(" ");
+	}
+}
+
+void	built_in_echo(char **token)
+{
+	int	i;
+
 	if (token[1] == 0)
 		printf("\n");
-	else if (ft_strlen(token[1]) == 2 && token[1][0] == '-' && token[1][1] == 'n') //strnstr 안되서 임시 방편
+	else if (ft_strlen(token[1]) == 2 && \
+			token[1][0] == '-' && token[1][1] == 'n')
 	{
 		i = 1;
-		while(token[++i] != 0)
-		{
-			printf("%s",token[i]);
-			if ((token[i + 1] != 0))
-				printf(" ");
-		}
+		print_loop(token, i);
 	}
 	else
 	{
 		i = 0;
-		while(token[++i] != 0)
-		{
-			printf("%s", token[i]);
-			if ((token[i + 1] != 0))
-			printf(" ");
-		}
+		print_loop(token, i);
 		printf("\n");
 	}
 }

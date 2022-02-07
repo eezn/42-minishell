@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 04:13:21 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 14:55:33 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <signal.h>
+# include <errno.h>
 # include <sys/wait.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
@@ -70,10 +71,11 @@ void	exec_cmd(t_node *astree, t_elist *elist);
 void	exec_pipe(t_node *astree, t_elist *elist, int *fd);
 void	exec_rdr(t_node *astree, t_elist *elist, int *fd);
 
+
 /* Signal */
 void	sig_parent(int signal);
 void	sig_execve(int signal);
-void	setting_parent_signal();
-void	setting_execve_signal();
+void	setting_parent_signal(void);
+void	setting_execve_signal(void);
 
 #endif

@@ -3,27 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:20 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:13:42 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 19:33:10 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* 이미 존재하는 key -> update, 존재하지 않는 key -> append */
 void	built_in_export(char **token, t_elist *elist)
 {
 	t_env	*env;
 	char	**set;
-	// char	*key;
-	// char	*value;
-	int i;
+	int		i;
 
-	if(token[1] == 0)
+	if (token[1] == 0)
 		printf("export: nothing arguments\n");
-	else if(token[2] != 0)
+	else if (token[2] != 0)
 		printf("export: too many arguments\n");
 	else
 	{
@@ -37,15 +34,11 @@ void	built_in_export(char **token, t_elist *elist)
 		else
 			append_env(elist, ft_strdup(set[0]), ft_strdup(set[1]));
 		i = 0;
-		while(set[i++])
+		while (set[i++])
 			free(set[i]);
 		free(set);
 	}
 }
-
-
-
-
 
 /*  jin-lee
 void	built_in_export(t_elist *elist, char *key, char *value)

@@ -3,66 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_cd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:56:44 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/04 19:13:53 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/05 19:27:49 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int cd_arg_check(char** tmp, t_elist *elist, t_env *env_pwd, t_env *env_oldpwd)
+static void	cd_home(t_env *pwd, t_env *oldpwd, t_env	*home)
 {
-	t_env	*env_home;
-	char *tmp_path;
-
-	env_home = get_env_by_key(elist, "HOME");	
-	if (tmp[1] != 0 && tmp[2] != 0)
-		return (printf("cd: too many arguments\n"));
-	else if(tmp[1] == 0 || (tmp[1][0] == '~' && ft_strlen(tmp[1]) == 1))
-	{
-		free(env_oldpwd->value);
-		env_oldpwd->value = ft_strdup(env_pwd->value);
-		chdir(env_home->value);
-		free(env_pwd->value);
-		env_pwd->value = ft_strdup(env_home->value);
-	}
-	else if (tmp[1][0] == '-' && ft_strlen(tmp[1]) == 1)
-	{
-		tmp_path = ft_strdup(env_oldpwd->value);
-		chdir(env_oldpwd->value);
-		free(env_oldpwd->value);
-		env_oldpwd->value =ft_strdup(env_pwd->value);
-		free(env_pwd->value);
-		env_pwd->value = ft_strdup(tmp_path);
-		free(tmp_path);
-	}
-	else
-		return 0;
-	return 1;
+	free(oldpwd->value);
+	oldpwd->value = ft_strdup(pwd->value);
+	chdir(home->value);
+	free(pwd->value);
+	pwd->value = ft_strdup(home->value);
 }
 
-int built_in_cd(char** tmp, t_elist	* elist)
+static void	cd_oldpwd(t_env *pwd, t_env *oldpwd)
 {
-	t_env	*env_pwd;
-	t_env	*env_oldpwd;
-	char cwd[1024];
+	char	*tmp_path;
 
-	env_pwd = get_env_by_key(elist, "PWD");
-	env_oldpwd = get_env_by_key(elist, "OLDPWD");
-	
-	if (cd_arg_check(tmp, elist, env_pwd, env_oldpwd) > 0)
-		return 0;
+	tmp_path = ft_strdup(oldpwd->value);
+	chdir(oldpwd->value);
+	free(oldpwd->value);
+	oldpwd->value = ft_strdup(pwd->value);
+	free(pwd->value);
+	pwd->value = ft_strdup(tmp_path);
+	free(tmp_path);
+}
+
+static int	cd_arg_check(char **tmp, t_elist *elist, t_env *pwd, t_env *oldpwd)
+{
+	t_env	*home;
+
+	home = get_env_by_key(elist, "HOME");
+	if (tmp[1] != 0 && tmp[2] != 0)
+		return (printf("cd: too many arguments\n"));
+	else if (tmp[1] == 0 || (tmp[1][0] == '~' && ft_strlen(tmp[1]) == 1))
+		cd_home(pwd, oldpwd, home);
+	else if (tmp[1][0] == '-' && ft_strlen(tmp[1]) == 1)
+		cd_oldpwd(pwd, oldpwd);
+	else
+		return (0);
+	return (1);
+}
+
+void	built_in_cd(char **tmp, t_elist	*elist)
+{
+	t_env	*pwd;
+	t_env	*oldpwd;
+	char	cwd[1024];
+
+	pwd = get_env_by_key(elist, "PWD");
+	oldpwd = get_env_by_key(elist, "OLDPWD");
+	if (cd_arg_check(tmp, elist, pwd, oldpwd) > 0)
+		return ;
 	if (chdir(tmp[1]) == -1)
 		printf("IS NOT FOUND\n");
 	else
 	{
-		free(env_oldpwd->value);
-		env_oldpwd->value = ft_strdup(env_pwd->value);
+		free(oldpwd->value);
+		oldpwd->value = ft_strdup(pwd->value);
 		getcwd(cwd, sizeof(cwd));
-		free(env_pwd->value);
-		env_pwd->value = ft_strdup(cwd);
+		free(pwd->value);
+		pwd->value = ft_strdup(cwd);
 	}
-	return 0;
 }
