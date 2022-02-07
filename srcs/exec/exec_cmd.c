@@ -6,21 +6,21 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 00:25:16 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:35:24 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	get_exit_result(int stat)
+static int	get_exit_status(int status)
 {
-	int	result;
+	int	error_num;
 
-	if ((stat & 255) > 0)
-		result = (stat & 255) + 128;
+	if ((status & 255) > 0)
+		error_num = (status & 255) + 128;
 	else
-		result = stat >> 8;
-	return (result);
+		error_num = status >> 8;
+	return (error_num);
 }
 
 /* fork()된 자식프로세스, 성공 or 실패시 프로세스 종료 free 필요없음 */
@@ -67,7 +67,7 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 		else
 		{
 			waitpid(pid, &status, 0);
-			elist->exit_status = get_exit_result(status);
+			elist->exit_status = get_exit_status(status);
 		}
 	}
 	else

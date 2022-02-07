@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 12:14:33 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/06 15:55:33 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:36:59 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_syntax(t_node *astree)
 		if (astree->lnode == NULL)
 			return (FALSE);
 	if (!check_syntax(astree->rnode) || !check_syntax(astree->lnode))
-		return (FALSE); 
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -39,8 +39,8 @@ void	inner_exec(t_node *astree, t_elist *elist)
 void	exec(t_tlist *tlist, t_elist *elist)
 {
 	t_node	*astree;
-	
-	astree = set_astree(tlist); 
+
+	astree = set_astree(tlist);
 	if (!check_syntax(astree))
 		printf("Syntax Error\n");
 	else

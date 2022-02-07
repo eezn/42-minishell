@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:53 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/06 23:43:54 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:55:33 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,10 @@ void	exec_cmd(t_node *astree, t_elist *elist);
 void	exec_pipe(t_node *astree, t_elist *elist);
 void	exec_rdr(t_node *astree, t_elist *elist);
 
-
 /* Signal */
 void	sig_parent(int signal);
 void	sig_execve(int signal);
-void	setting_parent_signal();
-void	setting_execve_signal();
+void	setting_parent_signal(void);
+void	setting_execve_signal(void);
 
 #endif
