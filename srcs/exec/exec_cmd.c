@@ -6,11 +6,22 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 16:32:55 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:35:24 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	get_exit_status(int status)
+{
+	int	error_num;
+
+	if ((status & 255) > 0)
+		error_num = (status & 255) + 128;
+	else
+		error_num = status >> 8;
+	return (error_num);
+}
 
 /* fork()된 자식프로세스, 성공 or 실패시 프로세스 종료 free 필요없음 */
 void	inner_exec_cmd(char **args, t_elist *elist)
@@ -32,15 +43,19 @@ void	inner_exec_cmd(char **args, t_elist *elist)
 		free(temp);
 		execve(cmd, args, envp);
 	}
-	printf("Error: exec\n");
-	exit(EXIT_FAILURE);
+	write(2, PROMPT, 21);
+	write(2, args[0], ft_strlen(args[0]));
+	write(2, ": command not found\n", 20);
+	exit(127);
 }
 
 void	exec_cmd(t_node *astree, t_elist *elist)
 {
 	char	**args;
+	int		status;
 	pid_t	pid;
 
+	status = 0;
 	setting_execve_signal();
 	args = temp_args(astree);
 	filter(args, elist);
@@ -50,8 +65,13 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 		if (!pid)
 			inner_exec_cmd(args, elist);
 		else
-			wait(NULL);
+		{
+			waitpid(pid, &status, 0);
+			elist->exit_status = get_exit_status(status);
+		}
 	}
+	else
+		elist->exit_status = 0;
 	setting_parent_signal();
 	clear_args(args);
 }

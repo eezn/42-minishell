@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 21:15:52 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 03:14:16 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/06 23:39:51 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_elist	*create_env_list(void)
 	elist->head = NULL;
 	elist->tail = NULL;
 	elist->count = 0;
+	elist->exit_status = 0;
 	return (elist);
 }
 
