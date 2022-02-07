@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_syntax.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:11:42 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 04:59:03 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 21:04:50 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ int	line_syntax(char *str)
 {
 	int	state;
 
-	state = is_open_quote(str);
-	state = is_triple(str);
+	state = 0;
+	if (is_open_quote(str))
+		state = 1;
+	if (is_triple(str))
+		state = 2;
 	if (state)
 	{
 		printf("Undifined Syntax\n");

@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:56:44 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/05 19:27:49 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:53:58 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ void	built_in_cd(char **tmp, t_elist	*elist)
 	if (cd_arg_check(tmp, elist, pwd, oldpwd) > 0)
 		return ;
 	if (chdir(tmp[1]) == -1)
-		printf("IS NOT FOUND\n");
+	{
+		print_error(tmp[1], ": No such file or directory");
+		elist->exit_status = -1;
+	}	
 	else
 	{
 		free(oldpwd->value);
