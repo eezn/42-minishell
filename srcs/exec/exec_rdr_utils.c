@@ -6,13 +6,13 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 06:28:30 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 00:31:01 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 17:27:59 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	open_file(char *path, int type)
+int	open_file(t_elist *elist, char *path, int type)
 {
 	int	file_fd;
 
@@ -24,7 +24,10 @@ int	open_file(char *path, int type)
 	else if (type == R_I)
 		file_fd = open(path, O_RDONLY, S_IRWXU);
 	if (file_fd == -1)
-		printf("picoshell: %s: No such file or directory\n", path);
+	{
+		print_error(path, ": No such file or directory");
+		elist->exit_status = 1;
+	}
 	return (file_fd);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_unset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:22 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 19:34:12 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:22:20 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,3 @@ void	built_in_unset(char **token, t_elist *elist)
 		inner_unset(elist, curr, prev);
 	}
 }
-
-/* jin-lee
-void	built_in_unset(t_elist *elist, char *key)
-{
-	t_env	*curr;
-	t_env	*prev;
-
-	curr = elist->head;
-	prev = elist->head;
-	while (curr)
-	{
-		if (!ft_strncmp(curr->key, key, ft_strlen(key)) \
-			&& (ft_strlen(curr->key) == ft_strlen(key)))
-			break ;
-		prev = curr;
-		curr = curr->next;
-	}
-	inner_unset(elist, curr, prev);
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:35:58 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/06 23:38:21 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:33:03 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ int	main(int argc, char **argv, char **envp)
 {
 	unused(argc, argv, envp);
 	main_loop(envp);
-	// main_debug(envp, "echo abc 123 $USER");
 	return (EXIT_SUCCESS);
 }

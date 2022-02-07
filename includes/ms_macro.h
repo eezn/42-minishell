@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:08:24 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/06 01:05:14 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 20:28:04 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 
 # define WRITE 1
 # define READ 0
+
+# define NOT_FOUND 127
 
 # define PROMPT "\e[35mpico\e[0m\e[32mshell\e[0m\e[35m$ \e[0m"
 

@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 15:35:24 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:21:55 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,14 @@ void	inner_exec_cmd(char **args, t_elist *elist)
 		cmd = ft_pathjoin(pathv[idx], args[0]);
 		execve(cmd, args, envp);
 	}
-	write(2, PROMPT, 21);
-	write(2, args[0], ft_strlen(args[0]));
-	write(2, ": command not found\n", 20);
-	exit(127);
+	print_error(args[0], ": command not found");
+	exit(NOT_FOUND);
 }
 
 void	exec_cmd(t_node *astree, t_elist *elist)
 {
 	char	**args;
 	int		status;
-	pid_t	pid;
 
 	status = 0;
 	setting_execve_signal();
@@ -82,6 +79,7 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 	filter(args, elist);
 	if (check_built_in(args, elist))
 	{
+		pid_t	pid;
 		pid = fork();
 		if (!pid)
 			inner_exec_cmd(args, elist);

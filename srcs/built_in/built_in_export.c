@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:20 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 19:33:10 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:22:12 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,3 @@ void	built_in_export(char **token, t_elist *elist)
 		free(set);
 	}
 }
-
-/*  jin-lee
-void	built_in_export(t_elist *elist, char *key, char *value)
-{
-	t_env	*env;
-
-	env = get_env_by_key(elist, key);
-	if (env)
-		env->value = value;
-	else
-		append_env(elist, key, value);
-}
-*/

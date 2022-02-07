@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:58:38 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/06 23:52:26 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 19:18:29 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	set_env_list(char **envp, t_elist **elist)
 	{
 		env = ft_split(*envp++, '=');
 		append_env(*elist, *env, *(env + 1));
+		free(env);
 	}
 	shlvl = get_env_by_key(*elist, "SHLVL");
 	ms_shlvl = ft_itoa(ft_atoi(shlvl->value) + 1);

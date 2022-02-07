@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/07 14:24:47 by sangchpa         ###   ########.fr        #
+#    Updated: 2022/02/07 20:30:51 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,7 @@ SRCS_DIR		= ./srcs \
 				  ./srcs/data_structure \
 				  ./srcs/prompt \
 				  ./srcs/built_in \
-				  ./srcs/exec \
-				  ./srcs/etc
+				  ./srcs/exec 
 
 SRCS			= ./srcs/main.c \
 				  \
@@ -54,6 +53,7 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/tools/ft_trim.c \
 				  ./srcs/tools/horizon_bar.c \
 				  ./srcs/tools/color_str.c \
+				  ./srcs/tools/exit_status.c \
 				  \
 				  ./srcs/data_structure/list_env.c \
 				  ./srcs/data_structure/list_env_utils.c \
@@ -83,9 +83,7 @@ SRCS			= ./srcs/main.c \
 				  ./srcs/exec/exec_pipe.c \
 				  ./srcs/exec/exec_rdr.c \
 				  ./srcs/exec/exec_rdr_utils.c \
-				  ./srcs/exec/exec.c \
-				  \
-				  ./srcs/etc/heredoc.c
+				  ./srcs/exec/exec.c
 
 
 OBJS_DIR		= ./objects

@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   horizon_bar.c                                      :+:      :+:    :+:   */
+/*   exit_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/05 03:22:00 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 20:26:36 by jin-lee          ###   ########.fr       */
+/*   Created: 2022/02/07 17:20:49 by jin-lee           #+#    #+#             */
+/*   Updated: 2022/02/07 20:26:29 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	horizon_bar(char c, char *color)
+void	print_error(char *str1, char *str2)
 {
-	struct winsize	size;
-	int				idx;
-
-	if (ioctl(STDIN_FILENO, TIOCGWINSZ, &size) == -1)
-		return ;
-	idx = 0;
-	ft_putstr_fd(color, STDOUT_FILENO);
-	while (idx++ < size.ws_col)
-		ft_putchar_fd(c, STDOUT_FILENO);
-	ft_putendl_fd(EOC, STDOUT_FILENO);
+	ft_putstr_fd("picoshell: ", 2);
+	if (str1)
+		ft_putstr_fd(str1, 2);
+	ft_putendl_fd(str2, 2);
 }

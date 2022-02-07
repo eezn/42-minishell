@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 01:59:04 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 00:29:08 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 20:35:59 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	main_loop(char **envp)
 		exec(tlist, elist);
 		clear(tlist, elist, line);
 	}
+	delete_env_list(elist);
 }
 
 /* main without loop */

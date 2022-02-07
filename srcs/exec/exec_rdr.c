@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:13:03 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 16:57:31 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/07 17:27:26 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	rdr_out(t_node *astree, t_elist *elist, int *fd)
 		return ;
 	}
 	printf("%d, %d\n", fd[0], fd[1]);
-	file_fd = open_file(astree->rnode->content, R_O);
+	file_fd = open_file(elist, astree->rnode->content, R_O);
 	if (file_fd == -1)
 		return ;
 	dup_and_close(file_fd, STDOUT_FILENO);
@@ -35,7 +35,7 @@ static void	rdr_oout(t_node *astree, t_elist *elist, int *fd)
 {
 	int		file_fd;
 
-	file_fd = open_file(astree->rnode->content, R_OO);
+	file_fd = open_file(elist, astree->rnode->content, R_OO);
 	if (file_fd == -1)
 		return ;
 	if (astree->lnode->type == R_II || astree->lnode->type == R_I \
@@ -62,7 +62,7 @@ static void	rdr_in(t_node *astree, t_elist *elist, int *fd)
 	}
 	else
 	{
-		file_fd = open_file(astree->rnode->content, R_I);
+		file_fd = open_file(elist, astree->rnode->content, R_I);
 		if (file_fd == -1)
 			return ;
 		dup_and_close(file_fd, STDIN_FILENO);

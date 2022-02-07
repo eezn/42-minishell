@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 18:16:37 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/07 00:01:44 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:22:45 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-
-$?정리
-
-성공적인 입력 > 0
-
-없는 명령어 입력 > 127
-
-
-없는 파일 : No such file or directory > 1
-
-
-cat실행 후 ctrl + c > 130
-cat실행 후 ctrl + \ > 131
-cat실행 후 ctrl + d > 0
-
-*/
 
 static int	is_env(char *str)
 {

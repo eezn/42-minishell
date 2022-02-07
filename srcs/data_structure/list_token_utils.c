@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_token_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:16:46 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 15:04:50 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:23:39 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,11 @@ void	analize_token_list(t_tlist *tlist)
 
 	curr = tlist->head;
 	prev_type = NONE;
-	horizon_bar('>', RED); // 지우기
 	while (curr)
 	{
 		curr->content = ft_trim(curr->content);
 		inner_analize(curr, curr->content, prev_type);
-		/* Test >> */
-		printf("%s(%02d)%s%s", PINK, curr->type, curr->content, EOC); // 지우기
-		printf("%s_%s\n", RED, EOC); // 지우기
-		/* << Test */
 		prev_type = curr->type;
 		curr = curr->next;
 	}
-	horizon_bar('<', RED); // 지우기
 }
