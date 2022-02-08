@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 12:14:33 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 21:29:55 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 05:53:52 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_syntax(t_node *astree)
 	if (astree->type == COMMAND && astree->lnode != NULL)
 		return (FALSE);
 	if (!check_syntax(astree->lnode) || !check_syntax(astree->rnode))
-		return (FALSE); 
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -42,16 +42,16 @@ void	exec(t_tlist *tlist, t_elist *elist)
 {
 	t_node	*astree;
 	int		fd[2];
-	
-	fd[0] = dup(STDIN_FILENO);	// 표준입력 백업
-	fd[1] = dup(STDOUT_FILENO);	// 표준출력 백업
-	
-	astree = set_astree(tlist); 
+
+	fd[0] = dup(STDIN_FILENO);
+	fd[1] = dup(STDOUT_FILENO);
+	astree = set_astree(tlist);
 	if (!check_syntax(astree))
 		printf("Syntax Error\n");
 	else
 		inner_exec(astree, elist, fd);
-
 	delete_astree(astree);
-	restore_fd(fd);			// 표준입출력 복구
+	restore_fd(fd);
+	close(fd[0]);
+	close(fd[1]);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   insert_astree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 04:24:52 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 14:46:34 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/08 05:48:18 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_node	*insert_root_rdr(t_node *root, t_node *insert)
 		insert->lnode = root;
 		return (insert);
 	}
-	return (root);	// else 부분 확인 필요
+	return (NULL);
 }
 
 static t_node	*insert_root_cmd(t_node *root, t_node *insert)
@@ -49,7 +49,7 @@ static t_node	*insert_root_cmd(t_node *root, t_node *insert)
 		insert->lnode = root;
 		return (insert);
 	}
-	return (root);	// else 부분 확인 필요
+	return (NULL);
 }
 
 static t_node	*insert_root_pipe(t_node *root, t_node *insert)
@@ -73,7 +73,7 @@ static t_node	*insert_root_pipe(t_node *root, t_node *insert)
 		insert->lnode = root;
 		return (insert);
 	}
-	return (root);	// else 부분 확인 필요
+	return (NULL);
 }
 
 t_node	*insert_astree(t_node *root, t_node *insert)

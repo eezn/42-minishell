@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 06:28:30 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 17:27:59 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 07:03:57 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	rl_until_sign(char *sign, int fd)
 	while (ft_strncmp(line, sign, ft_strlen(sign)) \
 		|| ft_strlen(line) != ft_strlen(sign))
 	{	
-		ft_putendl_fd(line, fd);	
-		free(line);	
-		line = readline("> ");	
+		ft_putendl_fd(line, fd);
+		free(line);
+		line = readline("> ");
 	}
 	free(line);
 	close(fd);

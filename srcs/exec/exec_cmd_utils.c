@@ -6,13 +6,13 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 05:55:35 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 05:58:31 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 07:02:35 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*ft_envjoin(char const *s1, char const *s2)
+static inline char	*ft_envjoin(char const *s1, char const *s2)
 {
 	char		*s;
 	char		*ret;
@@ -34,7 +34,7 @@ static char	*ft_envjoin(char const *s1, char const *s2)
 	return (ret);
 }
 
-char	**temp_envp(t_elist *elist)
+inline char	**temp_envp(t_elist *elist)
 {
 	char	**envp;
 	int		idx;
@@ -53,7 +53,7 @@ char	**temp_envp(t_elist *elist)
 	return (envp);
 }
 
-char	**temp_args(t_node *astree)
+inline char	**temp_args(t_node *astree)
 {
 	char	**args;
 	int		argc;
@@ -79,7 +79,7 @@ char	**temp_args(t_node *astree)
 	return (args);
 }
 
-void	clear_args(char **args)
+inline void	clear_args(char **args)
 {
 	int	i;
 
