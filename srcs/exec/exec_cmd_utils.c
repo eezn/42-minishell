@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 05:55:35 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 07:02:35 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 16:25:20 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ inline char	**temp_envp(t_elist *elist)
 		envp[idx] = ft_envjoin(curr->key, curr->value);
 		curr = curr->next;
 	}
+	envp[idx] = 0;
 	return (envp);
 }
 

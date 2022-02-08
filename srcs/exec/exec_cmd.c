@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 07:08:07 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 16:25:35 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static inline void	inner_exec_cmd(char **args, t_elist *elist)
 	{
 		cmd = ft_pathjoin(pathv[idx], args[0]);
 		execve(cmd, args, envp);
+		free(cmd);
 	}
 	print_error(args[0], ": command not found");
 	exit(NOT_FOUND);
