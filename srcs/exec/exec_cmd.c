@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 20:56:30 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/08 14:42:25 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	inner_exec_cmd(char **args, t_elist *elist)
 	{
 		cmd = ft_pathjoin(pathv[idx], args[0]);
 		execve(cmd, args, envp);
+		free(cmd);
 	}
 	print_error(args[0], ": command not found");
 	exit(NOT_FOUND);

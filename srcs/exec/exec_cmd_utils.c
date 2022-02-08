@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 05:55:35 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 05:58:31 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 14:42:43 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	**temp_envp(t_elist *elist)
 		envp[idx] = ft_envjoin(curr->key, curr->value);
 		curr = curr->next;
 	}
+	envp[idx] = 0;
 	return (envp);
 }
 
