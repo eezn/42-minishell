@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:13:03 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 16:46:42 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 23:12:59 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ static void	rdr_out(t_node *astree, t_elist *elist, int *fd)
 {
 	int	file_fd;
 
-	if (astree->lnode->type == R_II || astree->lnode->type == R_I \
-		|| astree->lnode->type == R_O || astree->lnode->type == R_OO)
-	{
-		inner_exec(astree->lnode, elist, fd);
-		return ;
-	}
 	file_fd = open_file(elist, astree->rnode->content, R_O);
 	if (file_fd == -1)
 		return ;
@@ -34,12 +28,6 @@ static void	rdr_oout(t_node *astree, t_elist *elist, int *fd)
 {
 	int	file_fd;
 
-	if (astree->lnode->type == R_II || astree->lnode->type == R_I \
-		|| astree->lnode->type == R_O || astree->lnode->type == R_OO)
-	{
-		inner_exec(astree->lnode, elist, fd);
-		return ;
-	}
 	file_fd = open_file(elist, astree->rnode->content, R_OO);
 	if (file_fd == -1)
 		return ;
@@ -52,21 +40,12 @@ static void	rdr_in(t_node *astree, t_elist *elist, int *fd)
 {
 	int	file_fd;
 
-	if (astree->lnode->type == R_II || astree->lnode->type == R_I \
-		|| astree->lnode->type == R_O || astree->lnode->type == R_OO)
-	{
-		inner_exec(astree->lnode, elist, fd);
+	file_fd = open_file(elist, astree->rnode->content, R_I);
+	if (file_fd == -1)
 		return ;
-	}
-	else
-	{
-		file_fd = open_file(elist, astree->rnode->content, R_I);
-		if (file_fd == -1)
-			return ;
-		dup_and_close(file_fd, STDIN_FILENO);
-		inner_exec(astree->lnode, elist, fd);
-		restore_fd(fd);
-	}
+	dup_and_close(file_fd, STDIN_FILENO);
+	inner_exec(astree->lnode, elist, fd);
+	restore_fd(fd);
 }
 
 static void	rdr_iin(t_node *astree, t_elist *elist, int *fd)
