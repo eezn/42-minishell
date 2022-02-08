@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_token_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:21:28 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 14:41:36 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/08 17:09:12 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ static char	*multiple_redirection(char c, int count)
 	return (ret);
 }
 
+static void	inner_set_token(char *str, t_tlist *tlist, t_pv *pv)
+{
+	pv->end = str + 1;
+	append_token(tlist, ft_strldup(pv->start, pv->end - pv->start));
+	pv->start = str + 1;
+	pv->curr_quote = 0;
+}
+
 void	set_token_list(char *str, t_tlist **tlist)
 {
 	t_pv	pv;
@@ -41,12 +49,7 @@ void	set_token_list(char *str, t_tlist **tlist)
 		if (!pv.curr_quote && (*str == SQUOTE || *str == DQUOTE))
 			pv.curr_quote = *str;
 		else if (pv.curr_quote && *str == pv.curr_quote)
-		{
-			pv.end = str + 1;
-			append_token(*tlist, ft_strldup(pv.start, pv.end - pv.start));
-			pv.start = str + 1;
-			pv.curr_quote = 0;
-		}
+			inner_set_token(str, *tlist, &pv);
 		else if (!pv.curr_quote && (*str == '|' || *str == '>' || *str == '<' \
 			|| *str == ' '))
 		{
@@ -61,5 +64,6 @@ void	set_token_list(char *str, t_tlist **tlist)
 		}
 		str++;
 	}
-	append_token(*tlist, ft_strdup(pv.start));
+	if (*pv.start)
+		append_token(*tlist, ft_strdup(pv.start));
 }

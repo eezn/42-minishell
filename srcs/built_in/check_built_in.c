@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_built_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:59:30 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/05 19:26:18 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/08 17:15:38 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_built_in(char **token, t_elist *elist)
 		built_in_unset(token, elist);
 	else if (ft_strnstr("exit", token[0], ft_strlen("exit")) != 0 && \
 			ft_strlen(token[0]) == ft_strlen("exit"))
-		exit(1);
+		exit(0);
 	else
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 16:25:35 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 17:26:12 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ static inline void	inner_exec_cmd(char **args, t_elist *elist)
 
 	envp = temp_envp(elist);
 	execve(args[0], args, envp);
+	if (!get_env_by_key(elist, "PATH"))
+	{
+		print_error(args[0], ": command not found");
+		exit(NOT_FOUND);
+	}	
 	pathv = ft_split(get_env_by_key(elist, "PATH")->value, ':');
 	idx = -1;
 	while (pathv[++idx])

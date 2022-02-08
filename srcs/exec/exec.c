@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 12:14:33 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 05:53:52 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 16:34:49 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_syntax(t_node *astree)
 		return (TRUE);
 	if (astree->type == R_I || astree->type == R_II \
 		|| astree->type == R_O || astree->type == R_OO || astree->type == PIPE)
-		if (astree->rnode == NULL)
+		if (astree->rnode == NULL || astree->lnode == NULL)
 			return (FALSE);
 	if (astree->type == COMMAND && astree->lnode != NULL)
 		return (FALSE);

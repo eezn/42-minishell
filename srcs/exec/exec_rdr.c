@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:13:03 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 05:25:15 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/08 16:46:42 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ static void	rdr_iin(t_node *astree, t_elist *elist, int *fd)
 	dup_and_close(open(path, O_RDONLY, S_IRWXU), STDIN_FILENO);
 	inner_exec(astree->lnode, elist, fd);
 	restore_fd(fd);
-	free(path);
 }
 
 void	exec_rdr(t_node *astree, t_elist *elist, int *fd)
