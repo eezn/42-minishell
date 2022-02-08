@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:20 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 20:22:12 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/09 02:21:01 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+static void	print_export_env(t_elist *elist)
+{
+	t_env	*curr;
+
+	curr = elist->head;
+	while (curr)
+	{
+		printf("declare -x ");
+		print_env(curr);
+		curr = curr->next;
+	}
+}
 
 void	built_in_export(char **token, t_elist *elist)
 {
@@ -19,7 +31,7 @@ void	built_in_export(char **token, t_elist *elist)
 	int		i;
 
 	if (token[1] == 0)
-		printf("export: nothing arguments\n");
+		print_export_env(elist);
 	else if (token[2] != 0)
 		printf("export: too many arguments\n");
 	else

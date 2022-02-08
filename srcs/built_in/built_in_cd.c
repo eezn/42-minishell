@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:56:44 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/07 20:53:58 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/09 02:05:08 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ static int	cd_arg_check(char **tmp, t_elist *elist, t_env *pwd, t_env *oldpwd)
 	else if (tmp[1] == 0 || (tmp[1][0] == '~' && ft_strlen(tmp[1]) == 1))
 		cd_home(pwd, oldpwd, home);
 	else if (tmp[1][0] == '-' && ft_strlen(tmp[1]) == 1)
+	{
+		printf("%s\n", oldpwd->value);
 		cd_oldpwd(pwd, oldpwd);
+	}
 	else
 		return (0);
 	return (1);

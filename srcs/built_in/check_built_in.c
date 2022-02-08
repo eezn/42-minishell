@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   check_built_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:59:30 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/08 17:15:38 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/09 01:44:01 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void static built_in_exit(char **token)
+{
+	int i;
+	int exit_status;
+
+	i = -1;
+	exit_status = 0;
+	if (token[1] != 0 && token[2] != 0)
+	{
+		print_error(token[1], ": too many argument\nexit");
+		exit(255);
+	}
+	if (token[1] != 0)
+	{
+		while(token[1][++i])
+		{
+			if (ft_isalpha(token[1][i]))
+			{
+				print_error(token[1], ": numeric argument required\nexit");
+				exit(255);
+			}
+		}
+		exit_status = ft_atoi(token[1]);
+	}
+	printf("exit\n");
+	exit(exit_status);
+}
 
 int	check_built_in(char **token, t_elist *elist)
 {	
@@ -34,7 +62,8 @@ int	check_built_in(char **token, t_elist *elist)
 		built_in_unset(token, elist);
 	else if (ft_strnstr("exit", token[0], ft_strlen("exit")) != 0 && \
 			ft_strlen(token[0]) == ft_strlen("exit"))
-		exit(0);
+		built_in_exit(token);
+		// exit(0);
 	else
 		return (1);
 	return (0);
