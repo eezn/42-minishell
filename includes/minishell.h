@@ -77,6 +77,5 @@ void	sig_parent(int signal);
 void	sig_execve(int signal);
 void	setting_parent_signal(void);
 void	setting_execve_signal(void);
-void	setting_child_signal(void);
 
 #endif
