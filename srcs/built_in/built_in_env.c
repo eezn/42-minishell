@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:17 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/04 19:13:45 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/09 23:29:51 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	built_in_env(char **token, t_elist *elist)
 {
 	if (token[1] != 0)
+	{
+		elist->exit_status = -1;
 		printf("env: too many arguments\n");
+	}
 	else
 		print_env_list(elist);
 }

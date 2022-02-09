@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:59:30 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/09 01:44:01 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/09 23:31:32 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_built_in(char **token, t_elist *elist)
 		built_in_echo(token);
 	else if (ft_strnstr("pwd", token[0], ft_strlen("pwd")) != 0 && \
 			ft_strlen(token[0]) == ft_strlen("pwd"))
-		built_in_pwd(token);
+		built_in_pwd(token, elist);
 	else if (ft_strnstr("cd", token[0], ft_strlen("cd")) != 0 && \
 			ft_strlen(token[0]) == ft_strlen("cd"))
 		built_in_cd(token, elist);
@@ -63,7 +63,6 @@ int	check_built_in(char **token, t_elist *elist)
 	else if (ft_strnstr("exit", token[0], ft_strlen("exit")) != 0 && \
 			ft_strlen(token[0]) == ft_strlen("exit"))
 		built_in_exit(token);
-		// exit(0);
 	else
 		return (1);
 	return (0);

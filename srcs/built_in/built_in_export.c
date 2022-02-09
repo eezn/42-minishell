@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:20 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/09 02:21:01 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/09 23:30:16 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ static void	print_export_env(t_elist *elist)
 	}
 }
 
+static void	print_arg_error(t_elist *elist)
+{
+	printf("export: too many arguments please input like A=B\n");
+	elist->exit_status = -1;
+}
+
 void	built_in_export(char **token, t_elist *elist)
 {
 	t_env	*env;
@@ -33,7 +39,7 @@ void	built_in_export(char **token, t_elist *elist)
 	if (token[1] == 0)
 		print_export_env(elist);
 	else if (token[2] != 0)
-		printf("export: too many arguments\n");
+		print_arg_error(elist);
 	else
 	{
 		set = ft_split(token[1], '=');

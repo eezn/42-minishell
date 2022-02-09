@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:56:44 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/09 02:05:08 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/09 23:29:31 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ static int	cd_arg_check(char **tmp, t_elist *elist, t_env *pwd, t_env *oldpwd)
 
 	home = get_env_by_key(elist, "HOME");
 	if (tmp[1] != 0 && tmp[2] != 0)
+	{
+		elist->exit_status = -1;
 		return (printf("cd: too many arguments\n"));
+	}
 	else if (tmp[1] == 0 || (tmp[1][0] == '~' && ft_strlen(tmp[1]) == 1))
 		cd_home(pwd, oldpwd, home);
 	else if (tmp[1][0] == '-' && ft_strlen(tmp[1]) == 1)
