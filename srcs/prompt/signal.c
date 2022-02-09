@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:14 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/09 02:03:40 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/10 02:12:35 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,11 @@ void	setting_execve_signal(void)
 void	setting_parent_signal(void)
 {
 	signal(SIGINT, sig_parent);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void	setting_default_signal(void)
+{
+	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }
