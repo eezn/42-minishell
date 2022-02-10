@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_in_unset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:22 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/07 20:22:20 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/09 02:17:24 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,22 @@ void	built_in_unset(char **token, t_elist *elist)
 {
 	t_env	*curr;
 	t_env	*prev;
+	int i;
 
-	curr = elist->head;
-	prev = elist->head;
-	if (token[2] != 0)
-		printf("unset: too many arguments\n");
-	else
+	i = 1;
+	while(token[i])
 	{
+		curr = elist->head;
+		prev = elist->head;
 		while (curr)
 		{
-			if (!ft_strncmp(curr->key, token[1], ft_strlen(token[1])) \
-				&& (ft_strlen(curr->key) == ft_strlen(token[1])))
+			if (!ft_strncmp(curr->key, token[i], ft_strlen(token[i])) \
+				&& (ft_strlen(curr->key) == ft_strlen(token[i])))
 				break ;
 			prev = curr;
 			curr = curr->next;
 		}
 		inner_unset(elist, curr, prev);
+		i++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 17:26:12 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/10 02:13:19 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 		pid = fork();
 		if (!pid)
 			inner_exec_cmd(args, elist);
+		setting_default_signal();
 		waitpid(pid, &status, 0);
 		elist->exit_status = get_exit_status(status);
 	}
