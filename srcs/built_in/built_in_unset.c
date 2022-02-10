@@ -6,13 +6,12 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:22:22 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/10 04:10:58 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/10 11:18:40 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* 함수 이름 임시 */
 static void	inner_unset(t_elist *elist, t_env *curr, t_env *prev)
 {
 	if (curr == NULL)
@@ -40,10 +39,10 @@ void	built_in_unset(char **token, t_elist *elist)
 {
 	t_env	*curr;
 	t_env	*prev;
-	int i;
+	int		i;
 
 	i = 1;
-	while(token[i])
+	while (token[i])
 	{
 		curr = elist->head;
 		prev = elist->head;

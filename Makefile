@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+         #
+#    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 15:36:01 by jin-lee           #+#    #+#              #
-#    Updated: 2022/02/09 01:55:34 by sangchpa         ###   ########.fr        #
+#    Updated: 2022/02/10 11:19:41 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,16 @@ EOC				=	"\033[0m"
 CLEAR			=	"\x1b[1A\x1b[M"
 
 # Cluster
-# READLINE_HEADER	= -I ~/.brew/opt/readline/include
-# READLINE_FOLDER	= -l readline -L ~/.brew/opt/readline/lib
+READLINE_HEADER	= -I ~/.brew/opt/readline/include
+READLINE_FOLDER	= -l readline -L ~/.brew/opt/readline/lib
 
 # jin-lee local workspace
 # READLINE_HEADER	= -I /opt/homebrew/opt/readline/include
 # READLINE_FOLDER	= -l readline -L /opt/homebrew/opt/readline/lib
 
 # sangchpa local workspace
-READLINE_HEADER	= -I /usr/local/opt/readline/include
-READLINE_FOLDER	= -l readline -L /usr/local/opt/readline/lib
+# READLINE_HEADER	= -I /usr/local/opt/readline/include
+# READLINE_FOLDER	= -l readline -L /usr/local/opt/readline/lib
 
 LIBFT			= ./libft/libft.a
 

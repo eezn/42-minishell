@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   check_built_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:59:30 by sangchpa          #+#    #+#             */
-/*   Updated: 2022/02/09 23:31:32 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/10 11:19:14 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void static built_in_exit(char **token)
+void static	built_in_exit(char **token)
 {
-	int i;
-	int exit_status;
+	int	i;
+	int	exit_status;
 
 	i = -1;
 	exit_status = 0;
@@ -26,7 +26,7 @@ void static built_in_exit(char **token)
 	}
 	if (token[1] != 0)
 	{
-		while(token[1][++i])
+		while (token[1][++i])
 		{
 			if (ft_isalpha(token[1][i]))
 			{
