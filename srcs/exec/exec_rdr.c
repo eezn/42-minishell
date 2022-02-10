@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:13:03 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 23:12:59 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/10 04:24:00 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,18 @@ static void	rdr_in(t_node *astree, t_elist *elist, int *fd)
 static void	rdr_iin(t_node *astree, t_elist *elist, int *fd)
 {
 	char	*sign;
-	char	*path;
 	pid_t	pid;
 
 	sign = astree->rnode->content;
-	path = get_env_by_key(elist, "HEREDOC")->value;
 	pid = fork();
 	if (!pid)
 	{
 		restore_fd(fd);
-		rl_until_sign(sign, open(path, O_WRONLY | O_CREAT, S_IRWXU));
+		rl_until_sign(sign, open(HEREDOC_DIR, O_WRONLY | O_CREAT, S_IRWXU));
 		exit(EXIT_SUCCESS);
 	}
 	waitpid(pid, NULL, 0);
-	dup_and_close(open(path, O_RDONLY, S_IRWXU), STDIN_FILENO);
+	dup_and_close(open(HEREDOC_DIR, O_RDONLY, S_IRWXU), STDIN_FILENO);
 	inner_exec(astree->lnode, elist, fd);
 	restore_fd(fd);
 }

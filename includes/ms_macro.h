@@ -6,13 +6,14 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:08:24 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 17:35:53 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/10 04:22:46 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MS_MACRO_H
 # define MS_MACRO_H
 
+# define HEREDOC_DIR "./.heredoc"
 # define BUFF_SIZE 2048
 
 # define TRUE 1
