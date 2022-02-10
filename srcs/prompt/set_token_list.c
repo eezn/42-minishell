@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_token_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:21:28 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 17:09:12 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/10 13:08:53 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,18 @@ static char	*multiple_redirection(char c, int count)
 	return (ret);
 }
 
-static void	inner_set_token(char *str, t_tlist *tlist, t_pv *pv)
+static void	quote_open(char *str, t_tlist *tlist, t_pv *pv)
+{
+	if (str != pv->start)
+	{
+		pv->end = str;
+		append_token(tlist, ft_strldup(pv->start, pv->end - pv->start));
+		pv->start = str;
+	}
+	pv->curr_quote = *str;
+}
+
+static void	quote_close(char *str, t_tlist *tlist, t_pv *pv)
 {
 	pv->end = str + 1;
 	append_token(tlist, ft_strldup(pv->start, pv->end - pv->start));
@@ -47,9 +58,9 @@ void	set_token_list(char *str, t_tlist **tlist)
 	while (*str)
 	{
 		if (!pv.curr_quote && (*str == SQUOTE || *str == DQUOTE))
-			pv.curr_quote = *str;
+			quote_open(str, *tlist, &pv);
 		else if (pv.curr_quote && *str == pv.curr_quote)
-			inner_set_token(str, *tlist, &pv);
+			quote_close(str, *tlist, &pv);
 		else if (!pv.curr_quote && (*str == '|' || *str == '>' || *str == '<' \
 			|| *str == ' '))
 		{

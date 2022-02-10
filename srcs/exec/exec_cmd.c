@@ -6,7 +6,7 @@
 /*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/10 02:13:19 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/10 13:03:22 by sangchpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ void	exec_cmd(t_node *astree, t_elist *elist)
 		pid = fork();
 		if (!pid)
 			inner_exec_cmd(args, elist);
-		setting_default_signal();
+		if (ft_strnstr("./minishell", args[0], ft_strlen("./minishell")) != 0 \
+			&& ft_strlen("./minishell") == ft_strlen(args[0]))
+			setting_default_signal();
 		waitpid(pid, &status, 0);
 		elist->exit_status = get_exit_status(status);
 	}
