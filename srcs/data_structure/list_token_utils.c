@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 04:16:46 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 05:46:21 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/19 14:41:24 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_token_list(t_tlist *tlist)
 }
 
 /* Token content의 type을 판단 */
-void	inner_analize(t_token *curr, char *content, int prev_type)
+static void	inner_analize(t_token *curr, char *content, int prev_type)
 {
 	if (*content == '|')
 		curr->type = PIPE;
@@ -50,7 +50,7 @@ void	inner_analize(t_token *curr, char *content, int prev_type)
 		if (prev_type == R_I || prev_type == R_O || prev_type == R_OO)
 			curr->type = PATH;
 		if (prev_type == R_II)
-			curr->type = HEREDOC;
+			curr->type = END_SIGN;
 	}
 }
 

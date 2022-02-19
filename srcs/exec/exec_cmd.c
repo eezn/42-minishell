@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangchpa <sangchpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 13:12:06 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/10 13:03:22 by sangchpa         ###   ########.fr       */
+/*   Updated: 2022/02/19 15:09:04 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static inline char	*ft_pathjoin(char const *s1, char const *s2)
+static int	get_exit_status(int status)
+{
+	int	error_num;
+
+	if ((status & 255) > 0)
+		error_num = (status & 255) + 128;
+	else
+		error_num = status >> 8;
+	return (error_num);
+}
+
+static char	*ft_pathjoin(char const *s1, char const *s2)
 {
 	char		*s;
 	char		*ret;
@@ -34,19 +45,8 @@ static inline char	*ft_pathjoin(char const *s1, char const *s2)
 	return (ret);
 }
 
-static int	get_exit_status(int status)
-{
-	int	error_num;
-
-	if ((status & 255) > 0)
-		error_num = (status & 255) + 128;
-	else
-		error_num = status >> 8;
-	return (error_num);
-}
-
 /* fork()된 자식프로세스, 성공 or 실패시 프로세스 종료 free 필요없음 */
-static inline void	inner_exec_cmd(char **args, t_elist *elist)
+static void	inner_exec_cmd(char **args, t_elist *elist)
 {
 	char	**envp;
 	char	**pathv;

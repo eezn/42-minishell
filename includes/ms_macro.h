@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 19:08:24 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/10 04:22:46 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/19 14:41:19 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define NONE 0
 # define COMMAND 1
 # define PATH 2
-# define HEREDOC 3
+# define END_SIGN 3
 
 # define PIPE 10
 # define R_II 11

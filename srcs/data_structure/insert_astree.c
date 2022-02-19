@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 04:24:52 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/08 05:48:18 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/19 14:42:17 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_node	*insert_root_rdr(t_node *root, t_node *insert)
 {
-	if (insert->type == HEREDOC || insert->type == PATH)
+	if (insert->type == END_SIGN || insert->type == PATH)
 	{
 		if (root->rnode == NULL)
 			root->rnode = insert;
@@ -54,7 +54,7 @@ static t_node	*insert_root_cmd(t_node *root, t_node *insert)
 
 static t_node	*insert_root_pipe(t_node *root, t_node *insert)
 {
-	if (insert->type == HEREDOC || insert->type == PATH)
+	if (insert->type == END_SIGN || insert->type == PATH)
 	{
 		if (root->rnode == NULL)
 			root->rnode = insert;

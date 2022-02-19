@@ -6,13 +6,13 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 00:46:57 by jin-lee           #+#    #+#             */
-/*   Updated: 2022/02/05 04:25:11 by jin-lee          ###   ########.fr       */
+/*   Updated: 2022/02/19 14:59:07 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_node	*new_node(char *content, int type)
+static t_node	*new_node(char *content, int type)
 {
 	t_node	*node;
 
