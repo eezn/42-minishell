@@ -1,8 +1,7 @@
 # minishell
-### Summary
-```
-The objective of this project is for you to create a simple shell.  
-Yes, your little bash or zsh. You will learn a lot about processes and file descriptors.
-
-(프로세스와 파일 디스크립터에 대한 이해를 바탕으로 bash, zsh과 같은 shell을 만드는 과제입니다.)
-```
+20220113 - 20220210
+- C언어로 작성된 bash 또는 zsh과 동일하게 작동하는 shell 프로그램 작성한 프로젝트입니다.
+- 입력되는 명령어의 구문과 구조를 분석 및 실행(멀티 프로세스)
+- 환경변수의 삽입, 삭제, 수정, 조회 / 리눅스 시그널 처리
+- cd, pwd, env, echo, export, unset, exit 명령어를 시스템콜 함수를 활용해 직접 구현
+- (libc 함수를 사용하지 않고 직접 구현한 함수를 사용합니다.)
